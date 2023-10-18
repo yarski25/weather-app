@@ -1,7 +1,7 @@
 {
-  "name": "yboard",
+  "name": "weather-app",
   "version": "0.1.0",
-  "homepage": "http://yarski25.github.io/yboard",
+  "homepage": "http://yarski25.github.io",
   "private": true,
   "dependencies": {
     "@emotion/react": "^11.11.1",
