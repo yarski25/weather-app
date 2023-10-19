@@ -1,6 +1,9 @@
 name: weather-app build and deploy
 
-on: [push]
+on:
+  push:
+    branches:
+      - main
 
 permissions:
   contents: write
@@ -9,19 +12,19 @@ jobs:
 build-and-deploy:
   runs-on: ubuntu-latest
   steps:
-    - name: Checkout 🛎️
+    - name: Checkout
       uses: actions/checkout@v3
 
-    - name: Install and Build 🔧
+    - name: Install and Build
       run: |
         npm install
-        npm run-script build
+        npm run build
 
       env:
         REACT_APP_API_URL: ${{ secrets.REACT_APP_API_URL }}
         REACT_APP_API_KEY: ${{ secrets.REACT_APP_API_KEY }}
 
-    - name: Deploy 🚀
+    - name: Deploy
       uses: JamesIves/github-pages-deploy-action@v4
       with:
         token: ${{ secrets.ACCESS_TOKEN }}
