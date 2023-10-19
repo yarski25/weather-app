@@ -1,31 +1,29 @@
 name: weather-app build and deploy
 
-on:
-  push:
-    branches:
-      - main
+on: [push]
 
 permissions:
   contents: write
 
 jobs:
-  build-and-deploy:
-    concurrency: ci-${{ github.ref }}
-    runs-on: ubuntu-latest
+build-and-deploy:
+  runs-on: ubuntu-latest
+  steps:
+    - name: Checkout 🛎️
+      uses: actions/checkout@v3
 
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v3
+    - name: Install and Build 🔧
+      run: |
+        npm install
+        npm run-script build
 
-      - name: Install and Build
-        run: |
-          npm ci
-          npm run build
-        env:
-          REACT_APP_API_URL: ${{ secrets.REACT_APP_API_URL }}
-          REACT_APP_API_KEY: ${{ secrets.REACT_APP_API_KEY }}
+      env:
+        REACT_APP_API_URL: ${{ secrets.REACT_APP_API_URL }}
+        REACT_APP_API_KEY: ${{ secrets.REACT_APP_API_KEY }}
 
-      - name: Deploy
-        uses: JamesIves/github-pages-deploy-action@v4
-        with:
-          folder: build
+    - name: Deploy 🚀
+      uses: JamesIves/github-pages-deploy-action@v4
+      with:
+        token: ${{ secrets.ACCESS_TOKEN }}
+        branch: gh-pages
+        folder: build
