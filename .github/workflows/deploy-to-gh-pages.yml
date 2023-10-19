@@ -1,3 +1,5 @@
+name: weather-app
+
 on:
   push:
     branches:
