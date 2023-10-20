@@ -218,10 +218,10 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
       - name: Installing Node.js
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v3
         with:
           node-version: 16.x
 
@@ -232,7 +232,7 @@ jobs:
         run: npm run build
 
       - name: Uploading production-ready build files
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: production-files
           path: ./build
@@ -245,7 +245,7 @@ jobs:
 
     steps:
       - name: Downloading artifact
-        uses: actions/download-artifact@v2
+        uses: actions/download-artifact@v3
         with:
           name: production-files
           path: ./build
