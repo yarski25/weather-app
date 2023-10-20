@@ -1,10 +1,7 @@
-# name: weather-app
-# on:
-#   [push]
-#   # workflow_dispatch:
-
-# permissions:
-#   contents: write
+# name: CI/CD
+# on: [push]
+# # permissions:
+# #   contents: write
 # jobs:
 #   build-and-deploy:
 #     runs-on: ubuntu-latest
@@ -21,10 +18,11 @@
 #           REACT_APP_API_KEY: ${{ secrets.REACT_APP_API_KEY }}
 
 #       - name: Deploy 🚀
+#         if: matrix.node-version == '16.x'
 #         uses: JamesIves/github-pages-deploy-action@v4
 #         with:
 #           # token: ${{ secrets.ACCESS_TOKEN }}
-#           # branch: gh-pages
+#           branch: gh-pages
 #           folder: build
 
 # name: Build and Deploy
@@ -75,137 +73,127 @@
 #         with:
 #           folder: build # The folder the action should deploy.
 
-# # Name that will define how it shows up in
-# # your Github Action overview for this repository
-# name: Build and Deploy
+# Name that will define how it shows up in
+# your Github Action overview for this repository
+name: CI/CD
 
-# # Defines what events the workflow will listen to in repository
-# # In this case commits and pull-requests on master-branch
-# on:
-#   push:
-#     branches: [main]
-
-# # What jobs will run in your workflow -> build_and_deploy
-# # Jobs can run in parallel or sequentially
-# jobs:
-#   build_and_deploy:
-#     # Type of runner that this job wil run on -> Linux Ubuntu
-#     runs-on: ubuntu-latest
-
-#     # Define which node version to use in the runner.
-#     # Use node version 14.15.0, latest Node LTS version
-#     strategy:
-#       matrix:
-#         node-version: [16.18.39]
-
-#     # Steps that are part of the build_and_deploy job
-#     # Steps represent a sequence of tasks that will be executed
-#     steps:
-#       # Action that will checkout repository so the workflow can
-#       # access the codebase
-#       - uses: actions/checkout@v2
-
-#         # Action allowing caching of node_modules to improve
-#         # workflow execution time
-#         # {{runner.os}} will use defined runner 'ubuntu-latest'
-#       - name: Cache node_modules
-#         uses: actions/cache@v2
-#         env:
-#           cache-name: cache-node-modules
-#         with:
-#           path: ~/.npm
-#           key: ${{ runner.os }}-build-${{ env.cache-name}}-${{hashFiles('**/package-lock.json') }}
-#           restore-keys: |
-#             ${{ runner.os }}-build-${{ env.cache-name }}-
-#             ${{ runner.os }}-build-
-#             ${{ runner.os }}-
-
-#         # Sets node environment for use in action
-#         # {{matrix.node-version}} will use Github default Node.js
-#         # version
-#       - name: Node ${{matrix.node-version}}
-#         uses: actions/setup-node@v1
-#         with:
-#           node-version: ${{matrix.node-version}}
-
-#         # Run npm commands to install NPM packages
-#       - name: Install dependencies
-#         run: npm install
-
-#         # Run npm build command for Vue project
-#       - name: Build Project
-#         run: npm run build
-
-#         # Push built code to the upfront created GH pages repo
-#       - name: Pushes to another repository
-#         uses: cpina/github-action-push-to-another-repository@main
-#         env:
-#           # Create and store API_TOKEN_GITHUB in repository
-#           # secrets -> explained later in this article
-#           API_TOKEN_GITHUB: ${{ secrets.ACCESS_TOKEN }}
-#         with:
-#           # Define source directory to push from -> Vue default
-#           # built into /dist folder
-#           source-directory: "build"
-#           # Set user settings and repository to push to
-#           destination-github-username: "{{yarski25}}"
-#           destination-repository-name: "{{yarski25.github.io}}"
-#           user-email: { { yaroslav.saprykin@gmail.com } }
-
-name: Build & deploy
-
+# Defines what events the workflow will listen to in repository
+# In this case commits and pull-requests on master-branch
 on:
   push:
-    branches:
-      - main
-  pull_request:
-    branches:
-      - main
+    branches: [main]
 
+# What jobs will run in your workflow -> build_and_deploy
+# Jobs can run in parallel or sequentially
 jobs:
-  build:
-    name: Build
+  build_and_deploy:
+    # Type of runner that this job wil run on -> Linux Ubuntu
     runs-on: ubuntu-latest
 
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
+    # Define which node version to use in the runner.
+    strategy:
+      matrix:
+        node-version: [16.x]
 
-      - name: Installing Node.js
+    steps:
+      # Action that will checkout repository so the workflow can
+      # access the codebase
+      - name: Checkout repository
+      - uses: actions/checkout@v2
+
+        # Action allowing caching of node_modules to improve
+        # workflow execution time
+        # {{runner.os}} will use defined runner 'ubuntu-latest'
+      - name: Cache node_modules
+        uses: actions/cache@v2
+        env:
+          cache-name: cache-node-modules
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-build-${{ env.cache-name}}-${{hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-build-${{ env.cache-name }}-
+            ${{ runner.os }}-build-
+            ${{ runner.os }}-
+
+        # Sets node environment for use in action
+        # {{matrix.node-version}} will use Github default Node.js
+        # version
+      - name: Node ${{matrix.node-version}}
         uses: actions/setup-node@v1
         with:
-          node-version: 16.x
+          node-version: ${{matrix.node-version}}
 
-      - name: Installing NPM packages
-        run: npm ci
+        # Run npm commands to install NPM packages
+      - name: Install dependencies
+        run: npm install
 
-      - name: Building project
+        # Run npm build command for React project
+      - name: Build
         run: npm run build
 
-      # - name: Running tests
-      #   run: npm run test
+        # Run npm deploy command
+      - name: Deploy
+        run: |
+          git config --global user.name ${{secrets.USER_NAME}}
+          git config --global user.email ${{secrets.USER_EMAIL}}
+          git remote set-url origin https://${{secrets.ACCESS_TOKEN}}@github.com/${{secrets.USER_NAME}}/weather-app
+          npm run deploy
 
-      - name: Uploading production-ready build files
-        uses: actions/upload-artifact@v2
-        with:
-          name: production-files
-          path: ./build
+# name: Build & deploy
 
-  deploy:
-    name: Deploy
-    needs: build
-    runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/main'
+# on:
+#   push:
+#     branches:
+#       - main
+#   pull_request:
+#     branches:
+#       - main
 
-    steps:
-      - name: Downloading artifact
-        uses: actions/download-artifact@v2
-        with:
-          name: production-files
-          path: ./build
+# jobs:
+#   build:
+#     name: Build
+#     runs-on: ubuntu-latest
 
-      - name: Deploying to gh-pages
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./build
+#     steps:
+#       - name: Checkout code
+#         uses: actions/checkout@v2
+
+#       - name: Installing Node.js
+#         uses: actions/setup-node@v1
+#         with:
+#           node-version: 16.x
+
+#       - name: Installing NPM packages
+#         run: npm ci
+
+#       - name: Building project
+#         run: npm run build
+
+#       # - name: Running tests
+#       #   run: npm run test
+
+#       - name: Uploading production-ready build files
+#         uses: actions/upload-artifact@v2
+#         with:
+#           name: production-files
+#           path: ./build
+
+#   deploy:
+#     name: Deploy
+#     needs: build
+#     runs-on: ubuntu-latest
+#     if: github.ref == 'refs/heads/main'
+
+#     steps:
+#       - name: Downloading artifact
+#         uses: actions/download-artifact@v2
+#         with:
+#           name: production-files
+#           path: ./build
+
+#       - name: Deploying to gh-pages
+#         uses: peaceiris/actions-gh-pages@v3
+#         with:
+#           github_token: ${{ secrets.GITHUB_TOKEN }}
+#           publish_dir: ./build
