@@ -100,6 +100,9 @@ jobs:
       # access the codebase
       - name: Checkout repository
         uses: actions/checkout@v2
+        with:
+          lfs: true
+          token: ${{ secrets.ACCESS_TOKEN }}
 
         # Action allowing caching of node_modules to improve
         # workflow execution time
