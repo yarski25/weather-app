@@ -27,50 +27,185 @@
 #           # branch: gh-pages
 #           folder: build
 
-name: Build and Deploy
-on: [push]
+# name: Build and Deploy
+# on: [push]
 
-permissions:
-  contents: write
+# permissions:
+#   contents: write
+
+# jobs:
+#   # Build job
+#   build:
+#     name: Build
+#     concurrency: ci-${{ github.ref }}
+#     runs-on: ubuntu-latest
+#     steps:
+#       - name: Checkout repo 🛎️
+#         uses: actions/checkout@v3
+
+#       - name: Install dependencies 🔧
+#         run: npm ci
+
+#       - name: Build 🔧
+#         run: npm run build
+#         env:
+#           REACT_APP_API_URL: ${{ secrets.REACT_APP_API_URL }}
+#           REACT_APP_API_KEY: ${{ secrets.REACT_APP_API_KEY }}
+#   # Deploy job
+#   deploy:
+#     name: Deploy
+#     # Add a dependency to the build job
+#     needs: build
+
+#     # # Grant GITHUB_TOKEN the permissions required to make a Pages deployment
+#     # permissions:
+#     #   pages: write # to deploy to Pages
+#     #   id-token: write # to verify the deployment originates from an appropriate source
+
+#     # # Deploy to the github-pages environment
+#     # environment:
+#     #   name: github-pages
+#     #   url: ${{ steps.deployment.outputs.page_url }}
+
+#     # Specify runner + deployment step
+#     runs-on: ubuntu-latest
+#     steps:
+#       - name: Deploy to GitHub Pages
+#         uses: JamesIves/github-pages-deploy-action@v4
+#         with:
+#           folder: build # The folder the action should deploy.
+
+# # Name that will define how it shows up in
+# # your Github Action overview for this repository
+# name: Build and Deploy
+
+# # Defines what events the workflow will listen to in repository
+# # In this case commits and pull-requests on master-branch
+# on:
+#   push:
+#     branches: [main]
+
+# # What jobs will run in your workflow -> build_and_deploy
+# # Jobs can run in parallel or sequentially
+# jobs:
+#   build_and_deploy:
+#     # Type of runner that this job wil run on -> Linux Ubuntu
+#     runs-on: ubuntu-latest
+
+#     # Define which node version to use in the runner.
+#     # Use node version 14.15.0, latest Node LTS version
+#     strategy:
+#       matrix:
+#         node-version: [16.18.39]
+
+#     # Steps that are part of the build_and_deploy job
+#     # Steps represent a sequence of tasks that will be executed
+#     steps:
+#       # Action that will checkout repository so the workflow can
+#       # access the codebase
+#       - uses: actions/checkout@v2
+
+#         # Action allowing caching of node_modules to improve
+#         # workflow execution time
+#         # {{runner.os}} will use defined runner 'ubuntu-latest'
+#       - name: Cache node_modules
+#         uses: actions/cache@v2
+#         env:
+#           cache-name: cache-node-modules
+#         with:
+#           path: ~/.npm
+#           key: ${{ runner.os }}-build-${{ env.cache-name}}-${{hashFiles('**/package-lock.json') }}
+#           restore-keys: |
+#             ${{ runner.os }}-build-${{ env.cache-name }}-
+#             ${{ runner.os }}-build-
+#             ${{ runner.os }}-
+
+#         # Sets node environment for use in action
+#         # {{matrix.node-version}} will use Github default Node.js
+#         # version
+#       - name: Node ${{matrix.node-version}}
+#         uses: actions/setup-node@v1
+#         with:
+#           node-version: ${{matrix.node-version}}
+
+#         # Run npm commands to install NPM packages
+#       - name: Install dependencies
+#         run: npm install
+
+#         # Run npm build command for Vue project
+#       - name: Build Project
+#         run: npm run build
+
+#         # Push built code to the upfront created GH pages repo
+#       - name: Pushes to another repository
+#         uses: cpina/github-action-push-to-another-repository@main
+#         env:
+#           # Create and store API_TOKEN_GITHUB in repository
+#           # secrets -> explained later in this article
+#           API_TOKEN_GITHUB: ${{ secrets.ACCESS_TOKEN }}
+#         with:
+#           # Define source directory to push from -> Vue default
+#           # built into /dist folder
+#           source-directory: "build"
+#           # Set user settings and repository to push to
+#           destination-github-username: "{{yarski25}}"
+#           destination-repository-name: "{{yarski25.github.io}}"
+#           user-email: { { yaroslav.saprykin@gmail.com } }
+
+name: Build & deploy
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
 
 jobs:
-  # Build job
   build:
     name: Build
-    concurrency: ci-${{ github.ref }}
     runs-on: ubuntu-latest
-    steps:
-      - name: Checkout repo 🛎️
-        uses: actions/checkout@v3
 
-      - name: Install dependencies 🔧
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Installing Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: 16.x
+
+      - name: Installing NPM packages
         run: npm ci
 
-      - name: Build 🔧
+      - name: Building project
         run: npm run build
-        env:
-          REACT_APP_API_URL: ${{ secrets.REACT_APP_API_URL }}
-          REACT_APP_API_KEY: ${{ secrets.REACT_APP_API_KEY }}
-  # Deploy job
+
+      # - name: Running tests
+      #   run: npm run test
+
+      - name: Uploading production-ready build files
+        uses: actions/upload-artifact@v2
+        with:
+          name: production-files
+          path: ./build
+
   deploy:
     name: Deploy
-    # Add a dependency to the build job
     needs: build
-
-    # # Grant GITHUB_TOKEN the permissions required to make a Pages deployment
-    # permissions:
-    #   pages: write # to deploy to Pages
-    #   id-token: write # to verify the deployment originates from an appropriate source
-
-    # # Deploy to the github-pages environment
-    # environment:
-    #   name: github-pages
-    #   url: ${{ steps.deployment.outputs.page_url }}
-
-    # Specify runner + deployment step
     runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+
     steps:
-      - name: Deploy to GitHub Pages
-        uses: JamesIves/github-pages-deploy-action@v4
+      - name: Downloading artifact
+        uses: actions/download-artifact@v2
         with:
-          folder: build # The folder the action should deploy.
+          name: production-files
+          path: ./build
+
+      - name: Deploying to gh-pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./build
