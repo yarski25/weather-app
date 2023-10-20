@@ -2,7 +2,7 @@ name: weather-app
 on:
   push:
     branches:
-      - master
+      - main
 permissions:
   contents: write
 jobs:
