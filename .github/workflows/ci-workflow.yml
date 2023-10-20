@@ -99,7 +99,7 @@ jobs:
       # Action that will checkout repository so the workflow can
       # access the codebase
       - name: Checkout repository
-      - uses: actions/checkout@v2
+        uses: actions/checkout@v2
 
         # Action allowing caching of node_modules to improve
         # workflow execution time
