@@ -1,8 +1,5 @@
 name: CI/CD
-on:
-  push:
-    tags:
-      - "GA*"
+on: [push]
 # permissions:
 #   contents: write
 jobs:
