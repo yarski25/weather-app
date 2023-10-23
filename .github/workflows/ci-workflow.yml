@@ -219,6 +219,8 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+        with:
+          branch: main
 
       # - name: Installing Node.js
       #   uses: actions/setup-node@v3
