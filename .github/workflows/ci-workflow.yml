@@ -33,7 +33,7 @@ jobs:
           BASE_BRANCH: main
           BRANCH: gh-pages
           CLEAN: true
-          FOLDER: .
+          folder: .
           SSH: true
 
       # - name: Deploy 🚀
