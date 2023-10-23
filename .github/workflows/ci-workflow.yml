@@ -1,53 +1,76 @@
 name: CI/CD
 on: [push]
 permissions:
-  contents: write
+  contents: read
+  pages: write
+  id-token: write
 jobs:
-  build-and-deploy:
+  build:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout 🛎️
-        uses: actions/checkout@v2.3.1
+        uses: actions/checkout@v3
+      - name: Setup Pages
+        uses: actions/configure-pages@v3
+      - name: Build
+        uses: actions/jekyll-build-pages@v1
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v1
 
-        # with:
-        #   # ref: main
-        #   # repository: yarski25/weather-app
-        #   # submodules: recursive
-        #   ssh-key: ${{ secrets.SSH_PRIVATE_KEY }}
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v2
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+# name: CI/CD
+# on: [push]
+# permissions:
+#   contents: read
+#   pages: write
+#   id-token: write
+# jobs:
+#   build-and-deploy:
+#     runs-on: ubuntu-latest
+#     steps:
+#       - name: Checkout 🛎️
+#         uses: actions/checkout@v3
+#         with:
+#           ref: gh-pages
+#           # repository: yarski25/weather-app
+#           submodules: recursive
+#           # ssh-key: ${{ secrets.SSH_PRIVATE_KEY }}
 
-      - name: Install SSH Client 🔑
-        uses: webfactory/ssh-agent@v0.8.0
-        with:
-          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+#       - name: Install SSH Client 🔑
+#         uses: webfactory/ssh-agent@v0.8.0
+#         with:
+#           ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
 
-      - name: Install and Build 🔧 # This example project is built using npm and outputs the result to the 'build' folder. Replace with the commands required to build your project, or remove this step entirely if your site is pre-built.
-        run: |
-          npm install
-          npm run-script build
-        env:
-          REACT_APP_API_URL: ${{ secrets.REACT_APP_API_URL }}
-          REACT_APP_API_KEY: ${{ secrets.REACT_APP_API_KEY }}
+#       - name: Install and Build 🔧 # This example project is built using npm and outputs the result to the 'build' folder. Replace with the commands required to build your project, or remove this step entirely if your site is pre-built.
+#         run: |
+#           npm install
+#           npm run-script build
+#         env:
+#           REACT_APP_API_URL: ${{ secrets.REACT_APP_API_URL }}
+#           REACT_APP_API_KEY: ${{ secrets.REACT_APP_API_KEY }}
 
-      - name: Deploy 🚀
-        uses: JamesIves/github-pages-deploy-action@v4
-        with:
-          #repository-name: yarski25/yarski25.github.io
-          branch: gh-pages
-          folder: build
-          #target-folder: build
-          clean: true
-          clean-exclude: |
-            special-file.txt
-            some/*.txt
-          ssh-key: true
+#       - name: Deploy 🚀
+#         uses: JamesIves/github-pages-deploy-action@v4
+#         with:
+#           #repository-name: yarski25/yarski25.github.io
+#           branch: gh-pages
+#           folder: build
+#           #target-folder: build
+#           clean: true
+#           clean-exclude: |
+#             special-file.txt
+#             some/*.txt
+#           ssh-key: true
 
-      # - name: Deploy 🚀
-      #   # if: matrix.node-version == '16.x'
-      #   uses: JamesIves/github-pages-deploy-action@v4
-      #   with:
-      #     token: ${{ secrets.ACCESS_TOKEN }}
-      #     branch: gh-pages
-      #     folder: build
 # name: Build and Deploy
 # on: [push]
 
