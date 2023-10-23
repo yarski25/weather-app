@@ -31,9 +31,10 @@ jobs:
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@v4
         with:
-          repository-name: yarski25/yarski25.github.io
-          branch: main
+          #repository-name: yarski25/yarski25.github.io
+          branch: gh-pages
           folder: build
+          target-folder: build
           clean: true
           clean-exclude: |
             special-file.txt
