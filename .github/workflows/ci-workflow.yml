@@ -11,7 +11,7 @@ jobs:
         with:
           ref: main
           # repository: yarski25/weather-app
-          submodules: true
+          submodules: recursive
           #ssh-key: ${{ secrets.SSH_PRIVATE_KEY }}
 
       - name: Install SSH Client 🔑
