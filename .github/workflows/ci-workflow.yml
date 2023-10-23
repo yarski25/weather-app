@@ -27,11 +27,13 @@ jobs:
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@v4
         with:
-          BASE_BRANCH: main
-          BRANCH: gh-pages
-          CLEAN: true
-          folder: .
-          SSH: true
+          branch: gh-pages
+          folder: build
+          clean: true
+          clean-exclude: |
+            special-file.txt
+            some/*.txt
+          ssh-key: true
 
       # - name: Deploy 🚀
       #   # if: matrix.node-version == '16.x'
