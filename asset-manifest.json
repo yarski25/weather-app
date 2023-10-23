@@ -1,0 +1,29 @@
+{
+  "files": {
+    "main.css": "/weather-app/static/css/main.633ecd7c.css",
+    "main.js": "/weather-app/static/js/main.332faeec.js",
+    "static/media/pressure.webp": "/weather-app/static/media/pressure.d8753e5c472c25837e32.webp",
+    "static/media/air-quality.webp": "/weather-app/static/media/air-quality.b0807454b40b93318f3d.webp",
+    "static/media/humidity.webp": "/weather-app/static/media/humidity.5a694a4e53b60adea9b9.webp",
+    "static/media/uv.webp": "/weather-app/static/media/uv.ef3f79cca45c0e7f7d6c.webp",
+    "static/media/moon3.webp": "/weather-app/static/media/moon3.124eb618b6a3cd515ef0.webp",
+    "static/media/wind.webp": "/weather-app/static/media/wind.dbcc397a24d6b99c58a9.webp",
+    "static/media/temp.webp": "/weather-app/static/media/temp.b547c2eef2d61df01b66.webp",
+    "static/media/moon4.webp": "/weather-app/static/media/moon4.2c1da6084cd698e4fd7e.webp",
+    "static/media/moon2.webp": "/weather-app/static/media/moon2.823cc578978b9aff56e3.webp",
+    "static/media/moon1.webp": "/weather-app/static/media/moon1.1e267cade761aed858f0.webp",
+    "static/media/SO2.webp": "/weather-app/static/media/SO2.6e3444addf96ccc57c29.webp",
+    "static/media/PM25.webp": "/weather-app/static/media/PM25.93b719fdb500e83c4896.webp",
+    "static/media/NO2.webp": "/weather-app/static/media/NO2.068c7de367ab065fa5fd.webp",
+    "static/media/CO.webp": "/weather-app/static/media/CO.7a23d89630bf85227375.webp",
+    "static/media/PM10.webp": "/weather-app/static/media/PM10.4c72359f5bed0fe15713.webp",
+    "index.html": "/weather-app/index.html",
+    "static/media/O3.webp": "/weather-app/static/media/O3.858425e5763fe5e23bcf.webp",
+    "main.633ecd7c.css.map": "/weather-app/static/css/main.633ecd7c.css.map",
+    "main.332faeec.js.map": "/weather-app/static/js/main.332faeec.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.633ecd7c.css",
+    "static/js/main.332faeec.js"
+  ]
+}
