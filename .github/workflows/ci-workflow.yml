@@ -9,13 +9,11 @@ jobs:
       - name: Checkout 🛎️
         uses: actions/checkout@v4
 
-      - name: Submodules set
-        run: git submodule update --init --recursive
-        # with:
-        #   # ref: main
-        #   # repository: yarski25/weather-app
-        #   submodules: recursive
-        #   #ssh-key: ${{ secrets.SSH_PRIVATE_KEY }}
+        with:
+          # ref: main
+          # repository: yarski25/weather-app
+          # submodules: recursive
+          ssh-key: ${{ secrets.SSH_PRIVATE_KEY }}
 
       - name: Install SSH Client 🔑
         uses: webfactory/ssh-agent@v0.8.0
