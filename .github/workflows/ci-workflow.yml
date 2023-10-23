@@ -19,13 +19,27 @@ jobs:
           REACT_APP_API_URL: ${{ secrets.REACT_APP_API_URL }}
           REACT_APP_API_KEY: ${{ secrets.REACT_APP_API_KEY }}
 
+      - name: Install SSH Client 🔑
+        uses: webfactory/ssh-agent@v0.7.0
+        with:
+          ssh-private-key: ${{ secrets.DEPLOY_KEY }}
+
       - name: Deploy 🚀
-        # if: matrix.node-version == '16.x'
         uses: JamesIves/github-pages-deploy-action@v4
         with:
-          token: ${{ secrets.ACCESS_TOKEN }}
-          branch: gh-pages
-          folder: build
+          BASE_BRANCH: main
+          BRANCH: gh-pages
+          CLEAN: true
+          FOLDER: .
+          SSH: true
+
+      # - name: Deploy 🚀
+      #   # if: matrix.node-version == '16.x'
+      #   uses: JamesIves/github-pages-deploy-action@v4
+      #   with:
+      #     token: ${{ secrets.ACCESS_TOKEN }}
+      #     branch: gh-pages
+      #     folder: build
 # name: Build and Deploy
 # on: [push]
 
