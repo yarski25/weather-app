@@ -7,13 +7,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout 🛎️
-        uses: actions/checkout@v4
+        uses: actions/checkout@v2.3.1
 
-        with:
-          # ref: main
-          # repository: yarski25/weather-app
-          # submodules: recursive
-          ssh-key: ${{ secrets.SSH_PRIVATE_KEY }}
+        # with:
+        #   # ref: main
+        #   # repository: yarski25/weather-app
+        #   # submodules: recursive
+        #   ssh-key: ${{ secrets.SSH_PRIVATE_KEY }}
 
       - name: Install SSH Client 🔑
         uses: webfactory/ssh-agent@v0.8.0
@@ -34,7 +34,7 @@ jobs:
           #repository-name: yarski25/yarski25.github.io
           branch: gh-pages
           folder: build
-          target-folder: build
+          #target-folder: build
           clean: true
           clean-exclude: |
             special-file.txt
