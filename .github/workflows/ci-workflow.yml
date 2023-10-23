@@ -220,6 +220,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
         with:
+          set-safe-directory: false
           branch: main
 
       # - name: Installing Node.js
