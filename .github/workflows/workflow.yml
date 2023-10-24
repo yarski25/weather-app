@@ -10,7 +10,7 @@ jobs:
     steps:
       # This action checks-out your repository under $GITHUB_WORKSPACE, so your workflow can access it.
       - name: Checkout 🛎️
-        uses: actions/checkout@v4
+        uses: actions/checkout@v3
         with:
           ref: gh-pages
           submodules: recursive
