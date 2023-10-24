@@ -1,45 +1,71 @@
 name: CI/CD
-on: [push]
+on: [push] # defaults to master
 permissions:
-  contents: read
-  pages: write
-  id-token: write
+  contents: write
 jobs:
-  build:
+  build-and-deploy:
     runs-on: ubuntu-latest
     steps:
-      # This action checks-out your repository under $GITHUB_WORKSPACE, so your workflow can access it.
       - name: Checkout 🛎️
         uses: actions/checkout@v3
+
+      - name: Install and Build 🔧
+        run: |
+          npm install
+          npm run-script build
+
+      - name: Deploy 🚀
+        uses: JamesIves/github-pages-deploy-action@v4
         with:
-          ref: main
-          submodules: recursive
+          branch: gh-pages
+          folder: build # The folder the action should deploy.
 
-      # An action to enable Pages and extract various metadata about a site.
-      # It can also be used to configure various static site generators we support as starter workflows.
-      - name: Setup Pages
-        uses: actions/configure-pages@v3
+# name: CI/CD
+# on: [push]
+# permissions:
+#   contents: read
+#   pages: write
+#   id-token: write
+# jobs:
+#   build:
+#     runs-on: ubuntu-latest
+#     steps:
+#       # This action checks-out your repository under $GITHUB_WORKSPACE, so your workflow can access it.
+#       - name: Checkout 🛎️
+#         uses: actions/checkout@v3
+#         with:
+#           ref: main
+#           submodules: recursive
 
-      # This is used along with actions/deploy-pages as part of the official
-      # support for building Pages with Actions (currently in public beta for public repositories).
-      - name: Build
-        uses: actions/jekyll-build-pages@v1
+#       # An action to enable Pages and extract various metadata about a site.
+#       # It can also be used to configure various static site generators we support as starter workflows.
+#       - name: Setup Pages
+#         uses: actions/configure-pages@v3
 
-      # Official support for building Pages with Actions is in public beta at the moment.
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v2
+#       # This is used along with actions/deploy-pages as part of the official
+#       # support for building Pages with Actions (currently in public beta for public repositories).
+#       - name: Build
+#         uses: actions/jekyll-build-pages@v1
+#         with:
+#           destination: "./build"
 
-  deploy:
-    runs-on: ubuntu-latest
-    needs: build
-    steps:
-      # This action is used to deploy Actions artifacts to GitHub Pages.
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v2
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+#       # Official support for building Pages with Actions is in public beta at the moment.
+#       - name: Upload artifact
+#         uses: actions/upload-pages-artifact@v2
+#         with:
+#           path: "./build"
+
+#   deploy:
+#     runs-on: ubuntu-latest
+#     needs: build
+#     steps:
+#       # This action is used to deploy Actions artifacts to GitHub Pages.
+#       - name: Deploy to GitHub Pages
+#         id: deployment
+#         uses: actions/deploy-pages@v2
+#     environment:
+#       name: github-pages
+#       url: ${{ steps.deployment.outputs.page_url }}
 # name: CI/CD
 # on: [push]
 # permissions:
@@ -84,11 +110,13 @@ jobs:
 #             some/*.txt
 #           ssh-key: true
 
-# name: Build and Deploy
+# name: CI/CD
 # on: [push]
 
 # permissions:
-#   contents: write
+#   contents: read
+#   pages: write
+#   id-token: write
 
 # jobs:
 #   # Build job
