@@ -27,7 +27,7 @@ jobs:
 
       # Official support for building Pages with Actions is in public beta at the moment.
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v1
+        uses: actions/upload-pages-artifact@v2
 
   deploy:
     runs-on: ubuntu-latest
