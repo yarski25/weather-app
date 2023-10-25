@@ -21,10 +21,11 @@ jobs:
           npm run-script build
 
       - name: Upload build files
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: github-pages
           path: build
+          retention-days: 1
 
       # # An action to enable Pages and extract various metadata about a site.
       # # It can also be used to configure various static site generators we support as starter workflows.
@@ -45,10 +46,12 @@ jobs:
     needs: build
     steps:
       - name: Download build files
-        uses: actions/download-artifact@v2
+        uses: actions/download-artifact@v3
         with:
           name: github-pages
-          path: build
+
+      - name: Display structure of downloaded files
+        run: ls -R
 
       # This action is used to deploy Actions artifacts to GitHub Pages.
       - name: Deploy to GitHub Pages
