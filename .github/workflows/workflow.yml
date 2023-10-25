@@ -63,18 +63,18 @@ jobs:
       - name: Display structure of downloaded files
         run: ls -R
 
-      # # This action is used to deploy Actions artifacts to GitHub Pages.
-      # - name: Deploy to GitHub Pages
-      #   id: deployment
-      #   uses: actions/deploy-pages@v2
-
-      - name: Deploy 🚀
+      # This action is used to deploy Actions artifacts to GitHub Pages.
+      - name: Deploy to GitHub Pages
         id: deployment
-        uses: JamesIves/github-pages-deploy-action@v4
-        with:
-          #branch: gh-pages
-          folder: . # The folder the action should deploy.
-          ssh-key: ${{ secrets.DEPLOY_KEY }}
+        uses: actions/deploy-pages@v2
+
+      # - name: Deploy 🚀
+      #   id: deployment
+      #   uses: JamesIves/github-pages-deploy-action@v4
+      #   with:
+      #     #branch: gh-pages
+      #     folder: . # The folder the action should deploy.
+      #     ssh-key: ${{ secrets.DEPLOY_KEY }}
 # name: CI/CD
 # on: [push]
 # permissions:
