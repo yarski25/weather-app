@@ -17,8 +17,8 @@ jobs:
 
       - name: Install and Build 🔧
         run: |
-          npm install
-          npm run-script build
+          npm ci
+          npm run build
 
       - name: Upload build files
         uses: actions/upload-artifact@v3
@@ -53,18 +53,18 @@ jobs:
       - name: Display structure of downloaded files
         run: ls -R
 
-      # This action is used to deploy Actions artifacts to GitHub Pages.
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v2
-
-      # - name: Deploy 🚀
+      # # This action is used to deploy Actions artifacts to GitHub Pages.
+      # - name: Deploy to GitHub Pages
       #   id: deployment
-      #   uses: JamesIves/github-pages-deploy-action@v4
-      #   with:
-      #     branch: gh-pages
-      #     folder: build # The folder the action should deploy.
-      #     #token: ${{ secrets.DEPLOY_KEY }}
+      #   uses: actions/deploy-pages@v2
+
+      - name: Deploy 🚀
+        id: deployment
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          branch: gh-pages
+          folder: build # The folder the action should deploy.
+          #token: ${{ secrets.DEPLOY_KEY }}
 
     environment:
       name: github-pages
