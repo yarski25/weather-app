@@ -45,7 +45,7 @@ Weather app allows you:
 ---
 
 2. Weather details <br><br>
-   <img src="preview/2.PNG" width="350"> <img src="preview/3.PNG" width="350">
+   <img src="preview/3.PNG" width="350"> <img src="preview/2.PNG" width="350">
 
 Weather card displays basic weather info which contains:
 
