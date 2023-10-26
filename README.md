@@ -1,46 +1,134 @@
-# Getting Started with Create React App
+# Weather App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<!-- TABLE OF CONTENTS -->
+<details>
+  <summary>Table of Contents</summary>
+  <ol>
+    <li>
+      <a href="#about-the-project">About The Project</a>
+      <ul>
+        <li><a href="#built-with">Built With</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="#getting-started">Getting Started</a>
+      <ul>
+        <li><a href="#prerequisites">Prerequisites</a></li>
+        <li><a href="#installation">Installation</a></li>
+      </ul>
+    </li>
+    <li><a href="#usage">Usage</a></li>
+  </ol>
+</details>
 
-## Available Scripts
+<!-- ABOUT THE PROJECT -->
 
-In the project directory, you can run:
+## About The Project
 
-### `npm start`
+1. Weather app <br><br>
+   <img src="preview/1.PNG" width="700">
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Weather app allows you:
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+    - to read weather forecast by current location by default if user allows permission.
+    - to read weather by typing city name location (e.g. Prague, London etc.).
 
-### `npm test`
+Notes: - 3 days weather forecast is provided via back-end service WeatherAPI. - 1st card provides current weather info at current hour.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+2. Weather details <br><br>
+   <img src="preview/2.PNG" width="350"> <img src="preview/3.PNG" width="350">
 
-### `npm run build`
+Weather card displays basic weather info which contains:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+    - icon (sunny, cloudy, raining etc.)
+    - temperature in ℃
+    - wind speed in km/h + wind direction via compass
+    - humidity in %
+    - air quality index by US EPA standard values
+        1 means Good
+        2 means Moderate
+        3 means Unhealthy for sensitive group
+        4 means Unhealthy
+        5 means Very Unhealthy
+        6 means Hazardous - moon visibility in %
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+To get more detailed weather info press arrow down which provides you with:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+    - wind speed in m/s + wind direction via compass
+    - air pressure in mmHg
+    - UV index
+    - pollution concentration of PM10, PM2.5, CO, O3, NO2 and SO2
 
-### `npm run eject`
+Use the `README.md` to get started.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Built With
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+Front-end app is based on
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+[![Typescript][Typescriptlang.org]][Typescript-url] language.
+[![React][React.js]][React-url] front-end framework.
+[![MUI][MUI]][MUI-url] design library.
 
-## Learn More
+Back-end:
+[![RestfulAPI][Restfulapi.net]][Restfulapi-url]
+Restfull API service WeatherAPI docs available on https://www.weatherapi.com/docs/
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### Deployed With
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Weather app is deployed with:
+[![GitHubActions][GitHubActions]][GitHubActions-url] CI/CD workflow.
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+<!-- GETTING STARTED -->
+
+## Getting Started
+
+### Prerequisites
+
+- npm
+  ```sh
+  npm install npm@latest -g
+  ```
+
+### Installation
+
+1. Clone the repo
+   ```sh
+   git clone https://github.com/yarski25/weather-app.git
+   ```
+2. Install NPM packages
+   ```sh
+   npm install
+   ```
+3. Run front-end
+
+   ```sh
+   npm start
+   ```
+
+   _to change default port just change `package.json`_
+
+   ```js
+   "start": "react-scripts start --port 3000"
+   ```
+
+4. Enjoy task manager :smile:
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+<!-- MARKDOWN LINKS & IMAGES -->
+<!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
+
+[React.js]: https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB
+[React-url]: https://reactjs.org/
+[Typescriptlang.org]: https://img.shields.io/badge/typescript-3399FF?style=for-the-badge&logo=typescript&logoColor=white
+[Typescript-url]: https://www.typescriptlang.org/
+[Restfulapi.net]: https://img.shields.io/badge/Rest-api-20232A?style=for-the-badge&logo=rest-api&logoColor=61DAFB
+[Restfulapi-url]: https://restfulapi.net/
+[GitHubActions]: https://img.shields.io/badge/github%20actions-%232671E5.svg?style=for-the-badge&logo=githubactions&logoColor=white
+[GitHubActions-url]: https://github.com/features/actions
+[MUI]: https://img.shields.io/badge/MUI-%230081CB.svg?style=for-the-badge&logo=mui&logoColor=white
+[MUI-url]: https://mui.com/
