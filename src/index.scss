@@ -12,6 +12,14 @@ body {
   //background-color: $bgcolor;
   //color: $textcolor;
   font-size: $fontsize;
+  // min-height: 100vh;
+  // display: flex;
+  // flex-direction: column;
+}
+
+footer {
+  position: relative;
+  text-align: center;
 }
 
 code {

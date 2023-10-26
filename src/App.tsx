@@ -16,6 +16,7 @@ import { darkTheme } from "./styles/dark";
 import { ColorContext } from "./types/ColorContext";
 import SwitchModeButton from "./components/ui/buttons/SwitchModeButton";
 import TestComponent from "./components/test/TestComponent";
+import Footer from "./components/footer/Footer";
 
 function App() {
   const [mode, setMode] = useState<PaletteMode>("light");
@@ -51,6 +52,7 @@ function App() {
           </ThemeProvider>
         </ColorContext.Provider>
       </div>
+      <Footer />
     </StyledEngineProvider>
   );
 }
