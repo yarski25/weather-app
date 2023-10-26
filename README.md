@@ -26,14 +26,21 @@
 ## About The Project
 
 1. Weather app <br><br>
-   <img src="preview/1.PNG" width="700">
+   <img src="preview/1.PNG" width="900">
 
 Weather app allows you:
 
     - to read weather forecast by current location by default if user allows permission.
     - to read weather by typing city name location (e.g. Prague, London etc.).
 
-Notes: - 3 days weather forecast is provided via back-end service WeatherAPI. - 1st card provides current weather info at current hour.
+---
+
+**NOTE**
+
+3 days weather forecast is provided via back-end service WeatherAPI.
+1st weather card provides current weather info at current hour.
+
+---
 
 2. Weather details <br><br>
    <img src="preview/2.PNG" width="350"> <img src="preview/3.PNG" width="350">
@@ -68,16 +75,21 @@ Use the `README.md` to get started.
 Front-end app is based on
 
 [![Typescript][Typescriptlang.org]][Typescript-url] language.
+
 [![React][React.js]][React-url] front-end framework.
+
 [![MUI][MUI]][MUI-url] design library.
 
 Back-end:
+
 [![RestfulAPI][Restfulapi.net]][Restfulapi-url]
+
 Restfull API service WeatherAPI docs available on https://www.weatherapi.com/docs/
 
 ### Deployed With
 
 Weather app is deployed with:
+
 [![GitHubActions][GitHubActions]][GitHubActions-url] CI/CD workflow.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
@@ -115,7 +127,11 @@ Weather app is deployed with:
    "start": "react-scripts start --port 3000"
    ```
 
-4. Enjoy task manager :smile:
+### Visit link
+
+Got to https://yarski25.github.io/weather-app/
+
+Enjoy weather app :smile:
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
