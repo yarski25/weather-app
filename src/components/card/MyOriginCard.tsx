@@ -6,10 +6,7 @@ import {
   CardContent,
   CardMedia,
   Collapse,
-  IconButton,
-  IconButtonProps,
   Typography,
-  styled,
 } from "@mui/material";
 import { DeepPartial } from "../../types/custom/DeepPartial";
 import { Weather } from "../../types/Forecast";
@@ -25,8 +22,6 @@ type MyCardProps = {
   style?: React.CSSProperties;
 };
 
-type variant = "small" | "normal";
-
 const MyOriginCard = ({
   weatherData,
   day,
@@ -37,19 +32,15 @@ const MyOriginCard = ({
 
   const handleExpandClick = (id: number) => {
     setExpandedId(expandedId === id ? -1 : id);
-    //setExpanded(!expanded ? expanded : expanded);
   };
 
   return (
-    //<div className="weather-page__output__card">
     <Box sx={BoxProps}>
       <Card variant="outlined" sx={CardProps}>
         <CardContent sx={CardContentProps}>
           <CardMedia
             component="img"
             width="100"
-            //height="100"
-
             image={
               day > 0
                 ? weatherData?.forecast?.forecastday?.[day].day?.condition?.icon
@@ -142,7 +133,6 @@ const MyOriginCard = ({
         </Collapse>
       </Card>
     </Box>
-    //</div>
   );
 };
 

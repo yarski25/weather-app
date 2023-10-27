@@ -1,5 +1,5 @@
 import { createTheme, Theme } from "@mui/material/styles";
-import { blue, deepOrange, grey, purple } from "@mui/material/colors";
+import { blue, grey, purple } from "@mui/material/colors";
 import { OverridesStyleRules } from "@mui/material/styles/overrides";
 import { PaletteMode } from "@mui/material";
 

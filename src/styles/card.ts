@@ -1,5 +1,4 @@
 import { Box, Card, SxProps, styled } from "@mui/material";
-import MyCard from "../components/card/MyOriginCard";
 
 // Default breakpoints
 // xs, extra-small: 0px
@@ -33,8 +32,6 @@ export const CardContentProps: SxProps = {
   justifyContent: "center",
   padding: "0.0em",
 };
-
-type StyledBoxClassKey = "root";
 
 type StyledBoxProps = {
   color?: "primary" | "secondary";

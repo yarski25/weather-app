@@ -1,7 +1,7 @@
 import axios from "axios";
 import { Coords } from "../types/Coords";
 import { OriginCurrent } from "../types/Current";
-import { Forecast, ForecastDay, Weather } from "../types/Forecast";
+import { Weather } from "../types/Forecast";
 
 const API_URL = process.env.REACT_APP_API_URL as string;
 const API_KEY = process.env.REACT_APP_API_KEY as string;
@@ -9,7 +9,7 @@ const API_KEY = process.env.REACT_APP_API_KEY as string;
 // queries
 const queries = new Map<string, string>();
 queries.set("airQuality", "&aqi=yes");
-queries.set("days", "&days=" + "14");
+queries.set("days", "&days=14");
 
 // endpoints
 const endpoints = new Map<string, string>();
@@ -71,20 +71,7 @@ export default class WeatherService {
         queries.get("airQuality") +
         queries.get("days")
     );
-    //api.openweathermap.org/geo/1.0/direct?q=London&limit=5&appid={API key}
-
-    //console.log(response.data);
 
     return response;
   }
-
-  //   static async getByLatLon(lat: string, lon: string) {
-  //     const response = await axios.get<any>(
-  //       API_URL +
-  //         `?lat={lat}&lon={lon}&units=metric&exclude=hourly,daily&appid=` +
-  //         API_KEY
-  //     );
-
-  //     return response;
-  //   }
 }

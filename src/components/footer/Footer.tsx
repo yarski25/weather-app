@@ -1,7 +1,10 @@
+import { Typography } from "@mui/material";
+
 const Footer = () => {
   return (
     <footer>
-      <p>Copyright &copy; 2023</p>
+      <Typography>Copyright &copy; 2023</Typography>
+      {/* <p>Copyright &copy; 2023</p> */}
     </footer>
   );
 };

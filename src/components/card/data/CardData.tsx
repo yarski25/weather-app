@@ -2,7 +2,6 @@ import { PropsWithChildren } from "react";
 import humidity from "../../../assets/humidity.webp";
 import wind from "../../../assets/wind.webp";
 import aqi from "../../../assets/air-quality.webp";
-import moonPhase from "../../../assets/moon-phase.webp";
 import moon1 from "../../../assets/moon1.webp";
 import moon2 from "../../../assets/moon2.webp";
 import moon3 from "../../../assets/moon3.webp";
@@ -28,30 +27,30 @@ const dateTransforme = (yyyymmdd: string) => {
 };
 
 const convertMoonPhase = (moonPhase: string) => {
-  let moonIcon = "moon";
+  // let moonIcon = "moon";
   switch (moonPhase) {
     case "New Moon": {
-      moonIcon += "1";
+      // moonIcon += "1";
       return moon1;
     }
     case "Waxing Crescent":
     case "First Quarter":
     case "Waxing Gibbous": {
-      moonIcon += "2";
+      // moonIcon += "2";
       return moon2;
     }
     case "Full Moon": {
-      moonIcon += "3";
+      // moonIcon += "3";
       return moon3;
     }
     case "Waning Gibbous":
     case "Last Quarter":
     case "Waning Crescent": {
-      moonIcon += "4";
+      // moonIcon += "4";
       return moon4;
     }
     default: {
-      moonIcon += "1";
+      // moonIcon += "1";
       return moon1;
     }
   }

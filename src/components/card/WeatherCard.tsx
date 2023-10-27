@@ -1,5 +1,5 @@
 import { PropsWithChildren, useState } from "react";
-import { CardActions, Collapse } from "@mui/material";
+import { Collapse } from "@mui/material";
 import { DeepPartial } from "../../types/custom/DeepPartial";
 import { Weather } from "../../types/Forecast";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
@@ -31,7 +31,6 @@ const WeatherCard = ({
 
   const handleExpandClick = (id: number) => {
     setExpandedId(expandedId === id ? -1 : id);
-    //setExpanded(!expanded ? expanded : expanded);
   };
 
   return (
