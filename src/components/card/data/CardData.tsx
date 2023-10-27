@@ -60,7 +60,7 @@ const convertMoonPhase = (moonPhase: string) => {
 const CardData = ({ data, day, hour }: PropsWithChildren<CardDataProps>) => {
   return (
     <Stack direction="column" justifyContent="center">
-      <Typography color="black" paddingTop="0.5em">
+      <Typography color="text.secondary" paddingTop="0.5em">
         {dateTransforme(data?.forecast?.forecastday?.[day].date as string)}
       </Typography>
       <CardMedia

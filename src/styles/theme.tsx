@@ -1,14 +1,6 @@
-import {
-  createTheme,
-  styled,
-  Theme,
-  useThemeProps,
-} from "@mui/material/styles";
+import { createTheme, Theme } from "@mui/material/styles";
 import { blue, deepOrange, grey, purple } from "@mui/material/colors";
-import { StyledComponent } from "@emotion/styled";
 import { OverridesStyleRules } from "@mui/material/styles/overrides";
-import TestComponent from "../components/test/TestComponent";
-import { forwardRef } from "react";
 import { PaletteMode } from "@mui/material";
 
 // colors
@@ -260,15 +252,17 @@ export const getDesignTokens = (mode: PaletteMode) => ({
         }
       : {
           // palette values for dark mode
-          primary: deepOrange,
-          divider: deepOrange[700],
+          primary: {
+            main: purple[300],
+          },
+          divider: grey[700],
           background: {
-            default: deepOrange[900],
-            paper: deepOrange[900],
+            default: grey[900],
+            paper: grey[900],
           },
           text: {
             primary: "#fff",
-            secondary: grey[500],
+            secondary: grey[900],
           },
         }),
   },

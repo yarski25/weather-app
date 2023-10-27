@@ -50,6 +50,10 @@ type StyledCardContentProps = {
   color?: "primary" | "secondary";
 };
 
+type StyledCardActionsProps = {
+  color?: "primary" | "secondary";
+};
+
 export const StyledBox = styled(Box, {
   // Configure which props should be forwarded on DOM
   shouldForwardProp: (prop) => prop !== "color" && prop !== "sx",
@@ -91,7 +95,8 @@ export const StyledCard = styled(Card, {
   display: "flex",
   flexDirection: "column",
   justifyContent: "center",
-  border: "2px solid blue",
+  border: "2px solid",
+  borderColor: theme.palette.primary.main,
   borderRadius: "1em",
   //backgroundColor: "#af52bfa1",
   boxSizing: "border-box",
@@ -115,4 +120,24 @@ export const StyledCardContent = styled(Card, {
   flexDirection: "column",
   justifyContent: "center",
   boxShadow: "none",
+}));
+
+export const StyledCardActions = styled(Card, {
+  // Configure which props should be forwarded on DOM
+  shouldForwardProp: (prop) => prop !== "color" && prop !== "sx",
+  name: "StyledCardContent",
+  slot: "Root",
+  // We are specifying here how the styleOverrides are being applied based on props
+  overridesResolver: (props, styles) => [
+    styles.root,
+    props.color === "primary" && styles.primary,
+    props.color === "secondary" && styles.secondary,
+  ],
+})<StyledCardActionsProps>(({ theme }) => ({
+  color: theme.palette.primary.main,
+  backgroundColor: theme.palette.primary.main,
+  // display: "flex",
+  // flexDirection: "column",
+  // justifyContent: "center",
+  // boxShadow: "none",
 }));

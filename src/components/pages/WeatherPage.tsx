@@ -267,7 +267,7 @@ const WeatherPage = () => {
             <Typography
               variant="h2"
               sx={{ fontSize: "0.8em" }}
-              color="text.secondary"
+              color="text.primary"
               gutterBottom
               marginTop="0.5em"
             >
