@@ -23,79 +23,6 @@ import { PaletteMode } from "@mui/material";
 // Sea-foam, salmon and navy
 // #aed6dc, #ff9a8d, #4a536b
 
-// interface MyCardComponentProps {
-//   color?: string;
-// }
-// type MyCardComponentClassKey = "root" | "bottom";
-
-// declare module "@mui/material/styles" {
-//   interface Components {
-//     MyCardComponent?: {
-//       defaultProps?: MyCardComponentProps;
-//       styleOverrides?: Partial<
-//         OverridesStyleRules<MyCardComponentClassKey, "MyCardComponent", Theme>
-//       >;
-//     };
-//   }
-//   // // allow configuration using `createTheme`
-//   // interface ThemeOptions {
-//   //   status?: {
-//   //     danger?: string;
-//   //   };
-//   // }
-// }
-
-// interface MyComponentProps {
-//   color?: "primary" | "secondary" | "inherit";
-//   variant?: "normal" | "dashed";
-// }
-// type MyComponentClassKey = "root";
-
-// export const MyComponent = styled("div", {
-//   // Configure which props should be forwarded on DOM
-//   shouldForwardProp: (prop) =>
-//     prop !== "color" && prop !== "variant" && prop !== "sx",
-//   name: "MyComponent",
-//   slot: "Root",
-//   // We are specifying here how the styleOverrides are being applied based on props
-//   overridesResolver: (props, styles) => [
-//     styles.root,
-//     props.color === "primary" && styles.primary,
-//     props.color === "secondary" && styles.secondary,
-//   ],
-// })<MyComponentProps>(({ theme }) => ({
-//   color: theme.palette.primary.main,
-//   backgroundColor: theme.palette.background.paper,
-//   padding: theme.spacing(1),
-//   border: "1px dashed black",
-// }));
-//   overridesResolver: (props, styles) => styles.root,
-// })(({ theme }) => {
-//   return {
-//     padding: 8,
-//   };
-// });
-
-// const StyledComp = styled("div", {
-//   shouldForwardProp: (prop) => prop !== "color" && prop !== "myProp",
-// })<{ myProp?: boolean; color?: string }>(({ theme, myProp, color }) => ({
-//   backgroundColor: myProp ? "aliceblue" : "red",
-//   color,
-//   padding: theme.spacing(1),
-// }));
-
-// necessary to include custom components
-// declare module "@mui/material/styles" {
-//   interface Components {
-//     MyComponent?: {
-//       defaultProps?: MyComponentProps;
-//       styleOverrides?: Partial<
-//         OverridesStyleRules<MyComponentClassKey, "MyComponent", Theme>
-//       >;
-//     };
-//   }
-// }
-
 type CustomComponentProps = {
   color?: "primary" | "secondary";
   backgroundColor?: string;
@@ -153,7 +80,6 @@ export const theme = createTheme({
       dark: purple[700],
     },
     background: {
-      //paper: "#fff",
       paper: blue[200],
       default: blue[200],
     },

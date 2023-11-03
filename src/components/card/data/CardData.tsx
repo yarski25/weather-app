@@ -27,30 +27,24 @@ const dateTransforme = (yyyymmdd: string) => {
 };
 
 const convertMoonPhase = (moonPhase: string) => {
-  // let moonIcon = "moon";
   switch (moonPhase) {
     case "New Moon": {
-      // moonIcon += "1";
       return moon1;
     }
     case "Waxing Crescent":
     case "First Quarter":
     case "Waxing Gibbous": {
-      // moonIcon += "2";
       return moon2;
     }
     case "Full Moon": {
-      // moonIcon += "3";
       return moon3;
     }
     case "Waning Gibbous":
     case "Last Quarter":
     case "Waning Crescent": {
-      // moonIcon += "4";
       return moon4;
     }
     default: {
-      // moonIcon += "1";
       return moon1;
     }
   }
@@ -58,24 +52,29 @@ const convertMoonPhase = (moonPhase: string) => {
 
 const CardData = ({ data, day, hour }: PropsWithChildren<CardDataProps>) => {
   return (
-    <Stack direction="column" justifyContent="center">
-      <Typography color="text.secondary" paddingTop="0.5em">
-        {dateTransforme(data?.forecast?.forecastday?.[day].date as string)}
-      </Typography>
-      <CardMedia
-        component="img"
-        width="100"
-        image={
-          day > 0
-            ? data?.forecast?.forecastday?.[day].day?.condition?.icon
-            : data?.current?.condition?.icon
-        }
-        alt={
-          day > 0
-            ? data?.forecast?.forecastday?.[day].day?.condition?.text
-            : data?.current?.condition?.text
-        }
-      />
+    <Stack
+      direction={{ xs: "row", sm: "column" }}
+      justifyContent={{ xs: "space-around", sm: "center" }}
+    >
+      <Stack width={{ xs: "10em", sm: `calc(100%)` }}>
+        <Typography color="text.secondary" paddingTop="0.5em">
+          {dateTransforme(data?.forecast?.forecastday?.[day].date as string)}
+        </Typography>
+        <CardMedia
+          component="img"
+          width="100"
+          image={
+            day > 0
+              ? data?.forecast?.forecastday?.[day].day?.condition?.icon
+              : data?.current?.condition?.icon
+          }
+          alt={
+            day > 0
+              ? data?.forecast?.forecastday?.[day].day?.condition?.text
+              : data?.current?.condition?.text
+          }
+        />
+      </Stack>
       <Stack spacing={0.25} direction="column" justifyContent="center">
         <Stack>
           <Item

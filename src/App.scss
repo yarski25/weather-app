@@ -216,7 +216,8 @@
 // lg - large 1200px
 // xl - extra large 1536px
 
-@media (orientation: portrait) {
+// @media (orientation: portrait) {
+@media only screen and (max-width: 600px) {
   .weather-page {
     &__input {
       flex-direction: column;
@@ -233,3 +234,39 @@
     }
   }
 }
+
+// @media only screen and (min-width: 480px) {
+//   .weather-page {
+//     &__input {
+//       flex-direction: column;
+
+//       &__button {
+//         margin-top: 0.5em;
+//       }
+//     }
+
+//     &__output {
+//       &__cards {
+//         flex-direction: column;
+//       }
+//     }
+//   }
+// }
+
+// @media only screen and (min-width: 768px) {
+//   .weather-page {
+//     &__input {
+//       flex-direction: row;
+
+//       &__button {
+//         margin-top: 0em;
+//       }
+//     }
+
+//     &__output {
+//       &__cards {
+//         flex-direction: row;
+//       }
+//     }
+//   }
+// }

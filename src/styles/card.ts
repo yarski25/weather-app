@@ -65,11 +65,17 @@ export const StyledBox = styled(Box, {
 })<StyledBoxProps>(({ theme }) => ({
   color: theme.palette.primary.main,
   backgroundColor: theme.palette.background.paper,
-  //padding: theme.spacing(1),
   minWidth: "1dwv",
-  margin: "1dvw",
-  marginTop: "2dvw",
-  width: "100%",
+
+  marginTop: theme.spacing(2),
+  marginLeft: theme.spacing(0),
+  marginBottom: theme.spacing(1),
+  marginRight: theme.spacing(0),
+  [theme.breakpoints.up("sm")]: {
+    marginLeft: theme.spacing(1),
+    marginRight: theme.spacing(1),
+  },
+  width: `calc(100%)`,
   borderRadius: "1em",
   boxShadow: theme.shadows[10],
 }));
@@ -88,14 +94,13 @@ export const StyledCard = styled(Card, {
 })<StyledCardProps>(({ theme }) => ({
   color: theme.palette.primary.main,
   backgroundColor: theme.palette.primary.main,
-  //padding: theme.spacing(1),
+
   display: "flex",
   flexDirection: "column",
   justifyContent: "center",
   border: "2px solid",
   borderColor: theme.palette.primary.main,
   borderRadius: "1em",
-  //backgroundColor: "#af52bfa1",
   boxSizing: "border-box",
 }));
 
@@ -133,8 +138,4 @@ export const StyledCardActions = styled(Card, {
 })<StyledCardActionsProps>(({ theme }) => ({
   color: theme.palette.primary.main,
   backgroundColor: theme.palette.primary.main,
-  // display: "flex",
-  // flexDirection: "column",
-  // justifyContent: "center",
-  // boxShadow: "none",
 }));
