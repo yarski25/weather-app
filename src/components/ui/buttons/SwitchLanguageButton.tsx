@@ -1,67 +1,35 @@
 import {
-  Brightness4 as LightIcon,
-  Brightness7 as DarkIcon,
-} from "@mui/icons-material";
-import {
-  Box,
   FormControl,
-  IconButton,
-  InputLabel,
   MenuItem,
   Select,
-  styled,
-  useTheme,
+  SelectChangeEvent,
 } from "@mui/material";
 import { LANGUAGES } from "../../../constants";
-
-//type StyledFormControlProps = {}
-
-const StyledFormControl = styled(FormControl)(({ theme }) => ({
-  margin: theme.spacing(0),
-  //maxHeight: "24px",
-  backgroundColor: "transparent",
-}));
+import { useState } from "react";
 
 const SwitchLanguageButton = () => {
-  const theme = useTheme();
+  const [language, setLanguage] = useState(LANGUAGES[0].label);
+
+  const handleLanguage = (event: SelectChangeEvent) => {
+    setLanguage(event.target.value);
+  };
 
   return (
-    // <Box
-    //   sx={{
-    //     display: "flex",
-    //     //minHeight: "100vh",
-    //     //width: "100%",
-    //     alignItems: "right",
-    //     justifyContent: "right",
-    //   }}
-    // >
-    //   {
-    //     <select defaultValue={"en"}>
-    //       {LANGUAGES.map(({ code, label }) => (
-    //         <option key={code} value={label}>
-    //           {label}
-    //         </option>
-    //       ))}
-    //     </select>
-    //   }
-    // </Box>
-    <StyledFormControl variant="standard" size="small">
-      {/* <InputLabel id="demo-simple-select-label">Language</InputLabel> */}
+    <FormControl variant="standard" size="small">
       <Select
         labelId="demo-simple-select-label"
         id="demo-simple-select"
-        value={LANGUAGES[0].code}
-        //label="Language"
-        //onChange={handleChange}
+        value={language}
+        onChange={handleLanguage}
         disableUnderline={true}
       >
-        {LANGUAGES.map(({ code, label }, index) => (
-          <MenuItem key={index} value={code}>
+        {LANGUAGES.map(({ label }, index) => (
+          <MenuItem key={index} value={label}>
             {label}
           </MenuItem>
         ))}
       </Select>
-    </StyledFormControl>
+    </FormControl>
   );
 };
 
