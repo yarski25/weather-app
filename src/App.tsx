@@ -6,12 +6,12 @@ import {
   createTheme,
 } from "@mui/material";
 import "./App.scss";
-import WeatherPage from "./components/pages/WeatherPage";
 import { getDesignTokens } from "./styles/theme";
 import { useMemo, useState } from "react";
 import { ColorContext } from "./types/ColorContext";
-import SwitchModeButton from "./components/ui/buttons/SwitchModeButton";
 import Footer from "./components/footer/Footer";
+import Header from "./components/header/Header";
+import Main from "./components/main/Main";
 
 function App() {
   const [mode, setMode] = useState<PaletteMode>("light");
@@ -35,16 +35,14 @@ function App() {
 
   return (
     <StyledEngineProvider injectFirst>
-      <div className="app">
-        <ColorContext.Provider value={colorMode}>
-          <ThemeProvider theme={theme}>
-            <CssBaseline enableColorScheme />
-            <SwitchModeButton />
-            <WeatherPage />
-          </ThemeProvider>
-        </ColorContext.Provider>
-      </div>
-      <Footer />
+      <ColorContext.Provider value={colorMode}>
+        <ThemeProvider theme={theme}>
+          <Header />
+          <CssBaseline enableColorScheme />
+          <Main />
+          <Footer />
+        </ThemeProvider>
+      </ColorContext.Provider>
     </StyledEngineProvider>
   );
 }
