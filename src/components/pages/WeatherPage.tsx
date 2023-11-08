@@ -7,8 +7,11 @@ import { useFetching } from "../../hooks/useFetching";
 import { DeepPartial } from "../../types/custom/DeepPartial";
 import { Weather } from "../../types/Forecast";
 import WeatherCard from "../card/WeatherCard";
+import { useTranslation } from "react-i18next";
 
 const WeatherPage = () => {
+  const { t } = useTranslation();
+
   const [position, setPosition] = useState<Coords>({ lat: "", lon: "" });
   const [city, setCity] = useState("");
   const [isTyping, setIsTyping] = useState(false);
@@ -112,7 +115,7 @@ const WeatherPage = () => {
         <div className="weather-page__input__textbox">
           <TextField
             id="outlined-basic"
-            label="city"
+            label={t("city")}
             variant="outlined"
             color="secondary"
             value={city}
@@ -127,7 +130,7 @@ const WeatherPage = () => {
             color="secondary"
             fullWidth
           >
-            Get location
+            {t("getLocation")}
           </Button>
         </div>
       </div>

@@ -5,26 +5,27 @@ import {
   SelectChangeEvent,
 } from "@mui/material";
 import { LANGUAGES } from "../../../constants";
-import { useState } from "react";
+import { useTranslation } from "react-i18next";
 
 const SwitchLanguageButton = () => {
-  const [language, setLanguage] = useState(LANGUAGES[0].label);
+  const { i18n } = useTranslation();
 
-  const handleLanguage = (event: SelectChangeEvent) => {
-    setLanguage(event.target.value);
+  const handleLanguage = (e: SelectChangeEvent) => {
+    const langCode = e.target.value;
+    i18n.changeLanguage(langCode);
   };
 
   return (
     <FormControl variant="standard" size="small">
       <Select
-        labelId="demo-simple-select-label"
-        id="demo-simple-select"
-        value={language}
+        labelId="language-select-label"
+        id="language-select"
+        defaultValue="en"
         onChange={handleLanguage}
         disableUnderline={true}
       >
-        {LANGUAGES.map(({ label }, index) => (
-          <MenuItem key={index} value={label}>
+        {LANGUAGES.map(({ code, label }) => (
+          <MenuItem key={code} value={code}>
             {label}
           </MenuItem>
         ))}

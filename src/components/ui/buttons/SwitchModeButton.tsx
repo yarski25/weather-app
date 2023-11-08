@@ -14,13 +14,10 @@ const SwitchModeButton = () => {
     <Box
       sx={{
         display: "flex",
-        //minHeight: "100vh",
-        //width: "100%",
         alignItems: "right",
         justifyContent: "right",
       }}
     >
-      {/* {theme.palette.mode} mode */}
       <IconButton
         sx={{ mr: 1 }}
         onClick={colorMode.toggleColorMode}

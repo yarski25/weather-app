@@ -17,10 +17,8 @@ const Item = (props: PropsWithChildren<ItemProps>) => {
       spacing={0.25}
       direction="row"
       justifyContent={props.justifyContentItem || "space-between"}
-      //justifyContent="space-evenly"
       alignItems="center"
       padding={props.paddingItem}
-      //width={200}
     >
       <Stack justifyContent="flex-start">
         <img

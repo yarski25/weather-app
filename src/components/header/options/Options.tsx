@@ -1,4 +1,3 @@
-import React from "react";
 import SwitchLanguageButton from "../../ui/buttons/SwitchLanguageButton";
 import SwitchModeButton from "../../ui/buttons/SwitchModeButton";
 

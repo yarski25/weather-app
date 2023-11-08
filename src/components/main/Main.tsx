@@ -1,4 +1,3 @@
-import React from "react";
 import WeatherPage from "../pages/WeatherPage";
 
 // component wraps content into HTML5 main tag
