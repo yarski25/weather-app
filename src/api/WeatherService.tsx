@@ -2,14 +2,19 @@ import axios from "axios";
 import { Coords } from "../types/Coords";
 import { OriginCurrent } from "../types/Current";
 import { Weather } from "../types/Forecast";
+import i18n from "../i18n";
+import { useEffect } from "react";
 
 const API_URL = process.env.REACT_APP_API_URL as string;
 const API_KEY = process.env.REACT_APP_API_KEY as string;
+
+//const getLanguage = () => i18next.language || window.localStorage.i18nextLng
 
 // queries
 const queries = new Map<string, string>();
 queries.set("airQuality", "&aqi=yes");
 queries.set("days", "&days=14");
+queries.set("lang", `&lang=${i18n.language}`);
 
 // endpoints
 const endpoints = new Map<string, string>();
@@ -25,6 +30,12 @@ endpoints.set("astronomy", "astronomy.json");
 endpoints.set("ip", "ip.json");
 
 export default class WeatherService {
+  // get language if i18n language changed
+  // useEffect(() => {
+  //   const languageCode = i18n.language;
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, [i18n.language]);
+
   static async getByCoords(coords: Coords) {
     const response = await axios.get<OriginCurrent>(
       API_URL +
@@ -53,7 +64,8 @@ export default class WeatherService {
         `,` +
         coords.lon +
         queries.get("airQuality") +
-        queries.get("days")
+        queries.get("days") +
+        `&lang=${i18n.language}`
     );
 
     return response;
@@ -69,7 +81,8 @@ export default class WeatherService {
         `&q=` +
         city +
         queries.get("airQuality") +
-        queries.get("days")
+        queries.get("days") +
+        `&lang=${i18n.language}`
     );
 
     return response;
