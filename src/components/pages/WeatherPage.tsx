@@ -79,7 +79,7 @@ const WeatherPage = () => {
 
   const handleCity = (event: ChangeEvent<HTMLInputElement>) => {
     setIsTyping(true);
-    const letters = /^[A-Za-z ]+$/;
+    const letters = /^[A-Za-záčďéěíňóřšťůúýžÁČĎÉĚÍŇÓŘŠŤŮÚÝŽЁёА-я \.\'\-]+$/;
     if (
       event.target.value.length > 0 &&
       event.target.value.match(letters) === null

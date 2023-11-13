@@ -15,6 +15,7 @@ const queries = new Map<string, string>();
 queries.set("airQuality", "&aqi=yes");
 queries.set("days", "&days=14");
 queries.set("lang", `&lang=${i18n.language}`);
+queries.set("alerts", "&alerts=yes");
 
 // endpoints
 const endpoints = new Map<string, string>();
@@ -65,6 +66,7 @@ export default class WeatherService {
         coords.lon +
         queries.get("airQuality") +
         queries.get("days") +
+        queries.get("alerts") +
         `&lang=${i18n.language}`
     );
 
@@ -82,6 +84,7 @@ export default class WeatherService {
         city +
         queries.get("airQuality") +
         queries.get("days") +
+        queries.get("alerts") +
         `&lang=${i18n.language}`
     );
 

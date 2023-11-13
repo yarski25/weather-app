@@ -49,21 +49,11 @@ const CardDetails = ({
       <Stack padding="0.5em 1.5em">
         <Item src={wind} alt="wind" fontSize="0.9em">
           {day > 0
-            ? (
-                ((data?.forecast?.forecastday?.[day].day
-                  ?.maxwind_kph as number) *
-                  1000) /
-                3600
-              )
-                .toFixed(0)
-                .toString()
-            : (((data?.current?.wind_kph as number) * 1000) / 3600)
+            ? "no data"
+            : ((Number(data?.current?.gust_kph) * 1000) / 3600)
                 .toFixed(0)
                 .toString()}{" "}
-          m/s{" "}
-          {day > 0
-            ? data?.forecast?.forecastday?.[day].hour?.[hour].wind_dir
-            : data?.current?.wind_dir}
+          m/s {day > 0 ? "" : data?.current?.wind_dir}
         </Item>
         <Item src={pressure} alt="pressure" fontSize="0.9em">
           {day > 0 &&

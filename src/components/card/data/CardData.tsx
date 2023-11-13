@@ -94,13 +94,31 @@ const CardData = ({ data, day, hour }: PropsWithChildren<CardDataProps>) => {
           </Item>
         </Stack>
         <Stack padding="0em 1.5em">
-          <Item src={wind} alt="wind">
+          {/* <Item src={wind} alt="wind">
             {day > 0
               ? Number(data?.forecast?.forecastday?.[day].day?.maxwind_kph)
                   .toFixed(0)
                   .toString()
               : Number(data?.current?.wind_kph).toFixed(0).toString()}{" "}
             km/h{" "}
+            {day > 0
+              ? data?.forecast?.forecastday?.[day].hour?.[hour].wind_dir
+              : data?.current?.wind_dir}
+          </Item> */}
+          <Item src={wind} alt="wind">
+            {day > 0
+              ? (
+                  ((data?.forecast?.forecastday?.[day].day
+                    ?.maxwind_kph as number) *
+                    1000) /
+                  3600
+                )
+                  .toFixed(0)
+                  .toString()
+              : (((data?.current?.wind_kph as number) * 1000) / 3600)
+                  .toFixed(0)
+                  .toString()}{" "}
+            m/s{" "}
             {day > 0
               ? data?.forecast?.forecastday?.[day].hour?.[hour].wind_dir
               : data?.current?.wind_dir}
