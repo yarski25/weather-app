@@ -36,12 +36,13 @@ body {
 
 header {
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
   min-height: 40px;
 }
 
 main {
   flex: 1;
+  min-height: calc(100vh - 112px);
 }
 
 footer {

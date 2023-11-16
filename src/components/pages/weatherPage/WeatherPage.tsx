@@ -1,13 +1,14 @@
 import React, { ChangeEvent, useEffect, useState } from "react";
 import Button from "@mui/material/Button";
 import { CircularProgress, Stack, TextField, Typography } from "@mui/material";
-import { Coords } from "../../types/Coords";
-import WeatherService from "../../api/WeatherService";
-import { useFetching } from "../../hooks/useFetching";
-import { DeepPartial } from "../../types/custom/DeepPartial";
-import { Weather } from "../../types/Forecast";
-import WeatherCard from "../card/WeatherCard";
+import { Coords } from "../../../types/Coords";
+import WeatherService from "../../../api/WeatherService";
+import { useFetching } from "../../../hooks/useFetching";
+import { DeepPartial } from "../../../types/custom/DeepPartial";
+import { Weather } from "../../../types/Forecast";
+import WeatherCard from "../../card/WeatherCard";
 import { useTranslation } from "react-i18next";
+import classes from "./WeatherPage.module.scss";
 
 const WeatherPage = () => {
   const { t } = useTranslation();
@@ -110,9 +111,9 @@ const WeatherPage = () => {
   };
 
   return (
-    <div className="weather-page">
-      <div className="weather-page__input">
-        <div className="weather-page__input__textbox">
+    <div className={classes.weatherPage}>
+      <div className={classes.weatherPage__input}>
+        <div className={classes.weatherPage__input__textbox}>
           <TextField
             id="outlined-basic"
             label={t("city")}
@@ -123,7 +124,7 @@ const WeatherPage = () => {
             fullWidth
           />
         </div>
-        <div className="weather-page__input__button">
+        <div className={classes.weatherPage__input__button}>
           <Button
             onClick={handleOnClick}
             variant="contained"
@@ -134,7 +135,7 @@ const WeatherPage = () => {
           </Button>
         </div>
       </div>
-      <div className="weather-page__output">
+      <div className={classes.weatherPage__output}>
         {isDataLoading && (
           <Stack
             margin="auto"
@@ -146,7 +147,7 @@ const WeatherPage = () => {
           </Stack>
         )}
         {weather?.current?.temp_c && (
-          <div className="weather-page__output__location">
+          <div className={classes.weatherPage__output__location}>
             <Typography
               variant="h2"
               sx={{ fontSize: "0.8em" }}
@@ -172,7 +173,7 @@ const WeatherPage = () => {
         )}
 
         {weather?.current?.temp_c && (
-          <div className="weather-page__output__cards">
+          <div className={classes.weatherPage__output__cards}>
             {weather?.forecast?.forecastday?.map((forecast, index: number) => (
               <WeatherCard
                 index={index}

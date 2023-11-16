@@ -11,6 +11,7 @@ import Item from "../../ui/Item/Item";
 import { Weather } from "../../../types/Forecast";
 import { DeepPartial } from "../../../types/custom/DeepPartial";
 import { CardMedia, Stack, Typography } from "@mui/material";
+import { useTranslation } from "react-i18next";
 
 type CardDataProps = {
   day: number;
@@ -51,6 +52,8 @@ const convertMoonPhase = (moonPhase: string) => {
 };
 
 const CardData = ({ data, day, hour }: PropsWithChildren<CardDataProps>) => {
+  const { t } = useTranslation();
+
   return (
     <Stack
       direction={{ xs: "row", sm: "column" }}
@@ -58,7 +61,18 @@ const CardData = ({ data, day, hour }: PropsWithChildren<CardDataProps>) => {
     >
       <Stack width={{ xs: "10em", sm: `calc(100%)` }}>
         <Typography color="text.secondary" paddingTop="0.5em">
-          {dateTransforme(data?.forecast?.forecastday?.[day].date as string)}
+          {/* {dateTransforme(data?.forecast?.forecastday?.[day].date as string)} */}
+          {t("intlDateTime", {
+            val: new Date(data?.forecast?.forecastday?.[day].date as string),
+            formatParams: {
+              val: {
+                weekday: "long",
+                year: "numeric",
+                month: "long",
+                day: "numeric",
+              },
+            },
+          })}
         </Typography>
         <CardMedia
           component="img"
@@ -118,10 +132,13 @@ const CardData = ({ data, day, hour }: PropsWithChildren<CardDataProps>) => {
               : (((data?.current?.wind_kph as number) * 1000) / 3600)
                   .toFixed(0)
                   .toString()}{" "}
-            m/s{" "}
+            {t("ms")}{" "}
             {day > 0
-              ? data?.forecast?.forecastday?.[day].hour?.[hour].wind_dir
-              : data?.current?.wind_dir}
+              ? t(
+                  data?.forecast?.forecastday?.[day].hour?.[hour]
+                    .wind_dir as string
+                )
+              : t(data?.current?.wind_dir as string)}
           </Item>
           <Item src={humidity} alt="humidity">
             {day > 0

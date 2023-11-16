@@ -12,6 +12,7 @@ import Item from "../../ui/Item/Item";
 import { Weather } from "../../../types/Forecast";
 import { DeepPartial } from "../../../types/custom/DeepPartial";
 import { Stack } from "@mui/material";
+import { useTranslation } from "react-i18next";
 
 type CardDetailsProps = {
   day: number;
@@ -44,16 +45,18 @@ const CardDetails = ({
   day,
   hour,
 }: PropsWithChildren<CardDetailsProps>) => {
+  const { t } = useTranslation();
+
   return (
     <>
       <Stack padding="0.5em 1.5em">
         <Item src={wind} alt="wind" fontSize="0.9em">
           {day > 0
-            ? "no data"
+            ? "-"
             : ((Number(data?.current?.gust_kph) * 1000) / 3600)
                 .toFixed(0)
                 .toString()}{" "}
-          m/s {day > 0 ? "" : data?.current?.wind_dir}
+          {t("ms")} {day > 0 ? "" : t(data?.current?.wind_dir as string)}
         </Item>
         <Item src={pressure} alt="pressure" fontSize="0.9em">
           {day > 0 &&
@@ -67,7 +70,7 @@ const CardDetails = ({
             : hPaTommHg(data?.current?.pressure_mb as string)
                 .toFixed(0)
                 .toString()}{" "}
-          mmHg
+          {t("mmHg")}
         </Item>
         <Item src={uv} alt="ultraviolet radiation" fontSize="0.9em">
           {day > 0 && data?.forecast?.forecastday?.[day].day?.uv
@@ -87,7 +90,7 @@ const CardDetails = ({
             : Number(data?.current?.air_quality?.pm2_5)
                 .toFixed(0)
                 .toString()}{" "}
-          µg/m³
+          {t("microgm3")}
         </Item>
         <Item
           src={pm10}
@@ -102,7 +105,7 @@ const CardDetails = ({
             : Number(data?.current?.air_quality?.pm10)
                 .toFixed(0)
                 .toString()}{" "}
-          µg/m³
+          {t("microgm3")}
         </Item>
         <Item src={co} alt="carbon monoxide" iconSize="24" fontSize="0.9em">
           {day > 0 && data?.forecast?.forecastday?.[day].day?.air_quality?.co
@@ -110,7 +113,7 @@ const CardDetails = ({
                 .toFixed(0)
                 .toString()
             : Number(data?.current?.air_quality?.co).toFixed(0).toString()}{" "}
-          µg/m³
+          {t("microgm3")}
         </Item>
         <Item src={o3} alt="ozone" iconSize="24" fontSize="0.9em">
           {day > 0 && data?.forecast?.forecastday?.[day].day?.air_quality?.o3
@@ -118,7 +121,7 @@ const CardDetails = ({
                 .toFixed(0)
                 .toString()
             : Number(data?.current?.air_quality?.o3).toFixed(0).toString()}{" "}
-          µg/m³
+          {t("microgm3")}
         </Item>
         <Item src={no2} alt="nitrogen dioxide" iconSize="24" fontSize="0.9em">
           {day > 0 && data?.forecast?.forecastday?.[day].day?.air_quality?.no2
@@ -128,7 +131,7 @@ const CardDetails = ({
             : Number(data?.current?.air_quality?.no2)
                 .toFixed(0)
                 .toString()}{" "}
-          µg/m³
+          {t("microgm3")}
         </Item>
         <Item src={so2} alt="sulphur dioxide" iconSize="24" fontSize="0.9em">
           {day > 0 && data?.forecast?.forecastday?.[day].day?.air_quality?.so2
@@ -138,7 +141,7 @@ const CardDetails = ({
             : Number(data?.current?.air_quality?.so2)
                 .toFixed(0)
                 .toString()}{" "}
-          µg/m³
+          {t("microgm3")}
         </Item>
       </Stack>
     </>

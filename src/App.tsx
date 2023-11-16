@@ -5,13 +5,13 @@ import {
   ThemeProvider,
   createTheme,
 } from "@mui/material";
-import "./App.scss";
 import { getDesignTokens } from "./styles/theme";
 import { useMemo, useState } from "react";
 import { ColorContext } from "./types/ColorContext";
 import Footer from "./components/footer/Footer";
 import Header from "./components/header/Header";
 import Main from "./components/main/Main";
+import { Outlet } from "react-router-dom";
 
 function App() {
   const [mode, setMode] = useState<PaletteMode>("light");
@@ -40,6 +40,7 @@ function App() {
           <Header />
           <CssBaseline enableColorScheme />
           <Main />
+          <Outlet />
           <Footer />
         </ThemeProvider>
       </ColorContext.Provider>

@@ -13,6 +13,7 @@ const SwitchLanguageButton = () => {
   const handleLanguage = (e: SelectChangeEvent) => {
     const langCode = e.target.value;
     i18n.changeLanguage(langCode);
+    console.log(i18n.language);
   };
 
   return (

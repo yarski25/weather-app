@@ -1,4 +1,4 @@
-import WeatherPage from "../pages/WeatherPage";
+import WeatherPage from "../pages/weatherPage/WeatherPage";
 
 // component wraps content into HTML5 main tag
 

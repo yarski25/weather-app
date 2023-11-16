@@ -1,35 +1,32 @@
 import i18n from "i18next";
 import { initReactI18next } from "react-i18next";
+import detector from "i18next-browser-languagedetector";
+import { translationEN } from "../public/locales/en/translation";
+import { translationCZ } from "../public/locales/cs/translation";
+import { translationRU } from "../public/locales/ru/translation";
 
-i18n.use(initReactI18next).init({
-  lng: "en",
-  fallbackLng: "en",
-  interpolation: {
-    escapeValue: false,
+const resources = {
+  en: {
+    translation: translationEN,
   },
-  resources: {
-    en: {
-      translation: {
-        title: "Weather App",
-        city: "city",
-        getLocation: "Get location",
-      },
-    },
-    cz: {
-      translation: {
-        title: "Aplikace počasí",
-        city: "město",
-        getLocation: "Získat polohu",
-      },
-    },
-    ru: {
-      translation: {
-        title: "Приложение погоды",
-        city: "город",
-        getLocation: "Получить местоположение",
-      },
-    },
+  cs: {
+    translation: translationCZ,
   },
-});
+  ru: {
+    translation: translationRU,
+  },
+};
+
+i18n
+  .use(detector)
+  .use(initReactI18next)
+  .init({
+    resources,
+    // lng: "en",
+    fallbackLng: "en",
+    interpolation: {
+      escapeValue: false,
+    },
+  });
 
 export default i18n;
