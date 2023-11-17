@@ -34,10 +34,10 @@ export function buildPlugins(options: BuildOptions): Configuration["plugins"] {
   if (isProd) {
     plugins.push(
       new MiniCssExtractPlugin({
-        filename: "css/[name].[contenthash:8].css",
-        chunkFilename: "css/[name].[contenthash:8].css",
-        // filename: "static/js/[name].[contenthash:8].js",
-        // chunkFilename: "static/js/[name].[contenthash:8].chunk.js",
+        // filename: "css/[name].[contenthash:8].css",
+        // chunkFilename: "css/[name].[contenthash:8].css",
+        filename: "static/css/[name].[contenthash:8].css",
+        chunkFilename: "static/css/[name].[contenthash:8].chunk.css",
       })
     );
     plugins.push(
