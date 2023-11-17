@@ -24,6 +24,9 @@ jobs:
           REACT_APP_API_URL: ${{ secrets.REACT_APP_API_URL }}
           REACT_APP_API_KEY: ${{ secrets.REACT_APP_API_KEY }}
 
+      - name: Display structure of downloaded files
+        run: ls -R
+
       # An action to enable Pages and extract various metadata about a site.
       # It can also be used to configure various static site generators we support as starter workflows.
       - name: Setup Pages
