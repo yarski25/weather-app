@@ -15,7 +15,7 @@ const WebpackConfig = (env: EnvVariables) => {
     entry: path.resolve(__dirname, "src", "index.tsx"),
     html: path.resolve(__dirname, "public", "index.html"),
     favicon: path.resolve(__dirname, "public", "app.ico"),
-    output: path.resolve(__dirname, "build"),
+    output: path.resolve(__dirname, ""),
     src: path.resolve(__dirname, "src"),
   };
 
