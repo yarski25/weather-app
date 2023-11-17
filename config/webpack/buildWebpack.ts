@@ -20,7 +20,7 @@ export function buildWebpack(options: BuildOptions): webpack.Configuration {
       filename: "static/js/[name].[contenthash:8].js",
       chunkFilename: "static/js/[name].[contenthash:8].chunk.js",
       assetModuleFilename: "static/media/[name].[hash][ext]",
-      publicPath: "/weather-app/",
+      //publicPath: "/weather-app/",
       clean: true,
     },
     plugins: buildPlugins(options),
