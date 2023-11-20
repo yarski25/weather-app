@@ -8,6 +8,6 @@ export function buildDevServer(options: BuildOptions) {
     open: true,
     // if share static using nginx should use proxy to index.html
     historyApiFallback: true,
-    contentBase: path.join(__dirname, "build"),
+    //contentBase: path.join(__dirname, "build"),
   };
 }

@@ -9,7 +9,8 @@ const Menu = () => {
         alignItems: "center",
       }}
     >
-      <Link to={"/about"}>About</Link>
+      About
+      {/* <Link to={"/about"}>About</Link> */}
     </div>
   );
 };

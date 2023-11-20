@@ -11,22 +11,22 @@ const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
 );
 
-const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <App />,
-    children: [
-      {
-        path: "/about",
-        element: (
-          <Suspense fallback={"Loading..."}>
-            <LazyAbout />
-          </Suspense>
-        ),
-      },
-    ],
-  },
-]);
+// const router = createBrowserRouter([
+//   {
+//     path: "/",
+//     element: <App />,
+//     children: [
+//       {
+//         path: "/about",
+//         element: (
+//           <Suspense fallback={"Loading..."}>
+//             <LazyAbout />
+//           </Suspense>
+//         ),
+//       },
+//     ],
+//   },
+// ]);
 
-// root.render(<App />);
-root.render(<RouterProvider router={router} />);
+root.render(<App />);
+//root.render(<RouterProvider router={router} />);
