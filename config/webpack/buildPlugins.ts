@@ -40,14 +40,20 @@ export function buildPlugins(options: BuildOptions): Configuration["plugins"] {
         chunkFilename: "static/css/[name].[contenthash:8].chunk.css",
       })
     );
-    plugins.push(
-      new Dotenv({
-        path: ".env.prod",
-      })
-    );
+    // plugins.push(
+    //   new Dotenv({
+    //     path: ".env.prod",
+    //   })
+    // );
     plugins.push(
       new webpack.DefinePlugin({
         "process.env.NODE_ENV": JSON.stringify("production"),
+        "process.env.REACT_APP_API_URL": JSON.stringify(
+          process.env.REACT_APP_API_URL
+        ),
+        "process.env.REACT_APP_API_KEY": JSON.stringify(
+          process.env.REACT_APP_API_KEY
+        ),
       })
     );
   }
