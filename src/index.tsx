@@ -3,6 +3,7 @@ import ReactDOM from "react-dom/client";
 import "./index.scss";
 import App from "./App";
 import {
+  BrowserRouter,
   createBrowserRouter,
   createHashRouter,
   RouterProvider,
@@ -15,22 +16,27 @@ const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
 );
 
-const router = createHashRouter([
+const router = createBrowserRouter(
+  [
+    {
+      path: "/",
+      element: <App />,
+      children: [
+        {
+          path: "/about",
+          element: (
+            <Suspense fallback={"Loading..."}>
+              <LazyAbout />
+            </Suspense>
+          ),
+        },
+      ],
+    },
+  ],
   {
-    path: "/",
-    element: <App />,
-    children: [
-      {
-        path: "/about",
-        element: (
-          <Suspense fallback={"Loading..."}>
-            <LazyAbout />
-          </Suspense>
-        ),
-      },
-    ],
-  },
-]);
+    basename: "/weather-app",
+  }
+);
 
 // root.render(<App />);
 root.render(<RouterProvider router={router} />);
