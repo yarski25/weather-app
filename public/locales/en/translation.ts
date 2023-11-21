@@ -22,6 +22,10 @@ const windDir225 = {
   ENE: `${windDir90.E}${windDir45.NE}`,
 };
 
+const formats = {
+  intlDateTime: "{{val, datetime}}",
+};
+
 export const translationEN = {
   title: "Weather App",
   city: "city",
@@ -32,4 +36,5 @@ export const translationEN = {
   microgm3: "µg/m3",
   ms: "m/s",
   mmHg: "mmHg",
+  ...formats,
 };

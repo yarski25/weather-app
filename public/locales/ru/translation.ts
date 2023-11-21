@@ -22,6 +22,10 @@ const windDir225RU = {
   ENE: `${windDir90RU.E}${windDir45RU.NE}`,
 };
 
+const formatsRU = {
+  intlDateTime: "{{val, datetime}}",
+};
+
 export const translationRU = {
   title: "Приложение погоды",
   city: "город",
@@ -32,4 +36,5 @@ export const translationRU = {
   microgm3: "мкг/м³",
   ms: "м/с",
   mmHg: "мм рт.ст.",
+  formatsRU,
 };

@@ -66,8 +66,8 @@ const CardData = ({ data, day, hour }: PropsWithChildren<CardDataProps>) => {
             val: new Date(data?.forecast?.forecastday?.[day].date as string),
             formatParams: {
               val: {
-                weekday: "long",
-                year: "numeric",
+                weekday: "short",
+                //year: "numeric",
                 month: "long",
                 day: "numeric",
               },

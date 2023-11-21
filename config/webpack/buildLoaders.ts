@@ -34,16 +34,45 @@ export function buildLoaders(options: BuildOptions): ModuleOptions["rules"] {
     exclude: /node_modules/,
   };
 
-  const fileLoader = {
-    test: /\.(png|jpg|webp|gif|svg|mp4|ico)$/,
-    exclude: /node_modules/,
-    use: ["file-loader?name=[name].[ext]", "webp-loader"],
+  const assetLoader = {
+    test: /\.(png|jpg|webp|jpeg|gif)$/i,
+    type: "asset/resource",
   };
+
+  const svgrLoader = {
+    test: /\.svg$/i,
+    use: [
+      {
+        loader: "@svgr/webpack",
+        options: {
+          icon: true,
+          svgoConfig: {
+            plugins: [
+              {
+                name: "convertColors",
+                params: {
+                  currentColor: true,
+                },
+              },
+            ],
+          },
+        },
+      },
+    ],
+  };
+
+  // const fileLoader = {
+  //   test: /\.(png|jpg|webp|gif|svg|mp4|ico)$/,
+  //   exclude: /node_modules/,
+  //   use: ["file-loader?name=[name].[ext]", "webp-loader"],
+  // };
 
   return [
     // order important for loaders!!!
     scssLoader,
     tsLoader,
-    fileLoader,
+    // fileLoader,
+    assetLoader,
+    svgrLoader,
   ];
 }

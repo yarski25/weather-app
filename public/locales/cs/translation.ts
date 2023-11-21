@@ -22,6 +22,10 @@ const windDir225CZ = {
   ENE: `${windDir90CZ.E}${windDir45CZ.NE}`,
 };
 
+const formatsCZ = {
+  intlDateTime: "{{val, datetime}}",
+};
+
 export const translationCZ = {
   title: "Aplikace počasí",
   city: "město",
@@ -32,4 +36,5 @@ export const translationCZ = {
   microgm3: "µg/m3",
   ms: "m/s",
   mmHg: "mmHg",
+  formatsCZ,
 };
