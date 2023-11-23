@@ -30,27 +30,29 @@ export function buildLoaders(options: BuildOptions): ModuleOptions["rules"] {
   };
 
   // const tsLoader = {
+  //   // ts-loader works with JSX
+  //   // if typescript not used should be babel-loader used
   //   test: /\.tsx?$/,
-  //   use: "ts-loader",
+  //   use: [
+  //     {
+  //       loader: "ts-loader",
+  //       options: {
+  //         getCustomTransformers: () => ({
+  //           before: [isDev && ReactRefreshTypeScript()].filter(Boolean),
+  //         }),
+  //         transpileOnly: true,
+  //       },
+  //     },
+  //   ],
   //   exclude: /node_modules/,
   // };
 
-  const tsLoader = {
-    // ts-loader works with JSX
-    // if typescript not used should be babel-loader used
+  const babelLoader = {
     test: /\.tsx?$/,
-    use: [
-      {
-        loader: "ts-loader",
-        options: {
-          getCustomTransformers: () => ({
-            before: [isDev && ReactRefreshTypeScript()].filter(Boolean),
-          }),
-          transpileOnly: true,
-        },
-      },
-    ],
     exclude: /node_modules/,
+    use: {
+      loader: "babel-loader",
+    },
   };
 
   const assetLoader = {
@@ -89,9 +91,10 @@ export function buildLoaders(options: BuildOptions): ModuleOptions["rules"] {
   return [
     // order important for loaders!!!
     scssLoader,
-    tsLoader,
-    // fileLoader,
     assetLoader,
+    // tsLoader,
+    babelLoader,
+    // fileLoader,
     svgrLoader,
   ];
 }

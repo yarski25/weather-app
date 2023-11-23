@@ -19,7 +19,6 @@ export function buildPlugins(options: BuildOptions): Configuration["plugins"] {
       template: paths.html,
       favicon: path.resolve(paths.public, "app.ico"),
       manifest: path.resolve(paths.public, "manifest.json"),
-      inject: true,
     }),
     new webpack.DefinePlugin({
       __PLATFORM__: JSON.stringify(platform),

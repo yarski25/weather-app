@@ -12,7 +12,6 @@ import classes from "./WeatherPage.module.scss";
 
 const WeatherPage = () => {
   const { t } = useTranslation();
-
   const [position, setPosition] = useState<Coords>({ lat: "", lon: "" });
   const [city, setCity] = useState("");
   const [isTyping, setIsTyping] = useState(false);
