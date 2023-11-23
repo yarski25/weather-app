@@ -4,7 +4,7 @@ import WeatherPage from "../pages/weatherPage/WeatherPage";
 
 const Main = () => {
   return (
-    <main>
+    <main data-testid={"main"}>
       <WeatherPage />
     </main>
   );

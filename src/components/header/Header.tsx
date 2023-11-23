@@ -3,7 +3,7 @@ import Options from "./options/Options";
 
 const Header = () => {
   return (
-    <header>
+    <header data-testid={"header"}>
       <Menu />
       <Options />
     </header>
