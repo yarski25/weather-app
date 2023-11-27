@@ -26,6 +26,12 @@ const formats = {
   intlDateTime: "{{val, datetime}}",
 };
 
+const weatherAlert = {
+  weatherAlert: "weather alert",
+  from: "from",
+  to: "to",
+};
+
 export const translationEN = {
   title: "Weather App",
   city: "city",
@@ -36,5 +42,6 @@ export const translationEN = {
   microgm3: "µg/m3",
   ms: "m/s",
   mmHg: "mmHg",
+  ...weatherAlert,
   ...formats,
 };

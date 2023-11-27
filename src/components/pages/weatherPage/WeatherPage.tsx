@@ -1,6 +1,14 @@
 import React, { ChangeEvent, useEffect, useState } from "react";
 import Button from "@mui/material/Button";
-import { CircularProgress, Stack, TextField, Typography } from "@mui/material";
+import {
+  CircularProgress,
+  IconButton,
+  Stack,
+  TextField,
+  Tooltip,
+  Typography,
+} from "@mui/material";
+import WarningAmberIcon from "@mui/icons-material/WarningAmber";
 import { Coords } from "../../../types/Coords";
 import WeatherService from "../../../api/WeatherService";
 import { useFetching } from "../../../hooks/useFetching";
@@ -9,6 +17,13 @@ import { Weather } from "../../../types/Forecast";
 import WeatherCard from "../../card/WeatherCard";
 import { useTranslation } from "react-i18next";
 import classes from "./WeatherPage.module.scss";
+import { Alerts } from "types/Alerts";
+
+const generateAlertTip = ({ alerts }: Alerts) => {
+  return alerts?.alert.map(
+    (alert, index) => `${alert?.msgtype} ${index + 1}\n ${alert?.headline}\n\n`
+  );
+};
 
 const WeatherPage = () => {
   const { t } = useTranslation();
@@ -171,6 +186,69 @@ const WeatherPage = () => {
           </div>
         )}
 
+        {weather?.alerts?.alert?.[0] && (
+          <div className={classes.weatherPage__output__alert}>
+            <div className={classes.weatherPage__output__alert__text}>
+              <Typography
+                variant="h2"
+                sx={{ fontSize: "0.8em" }}
+                color="secondary"
+              >
+                {t("weatherAlert")}
+              </Typography>
+            </div>
+            <div className={classes.weatherPage__output__alert__button}>
+              <Tooltip
+                title={weather.alerts.alert.map((alert, index) => (
+                  <>
+                    <Typography color="inherit">
+                      #{index + 1} - {alert.event}
+                      <br />
+                    </Typography>
+                    <b>{t("from")}</b>{" "}
+                    {t("intlDateTime", {
+                      val: new Date(alert.effective as string),
+                      formatParams: {
+                        val: {
+                          weekday: "short",
+                          //year: "numeric",
+                          month: "long",
+                          day: "numeric",
+                          hour: "numeric",
+                          minute: "numeric",
+                          second: "numeric",
+                        },
+                      },
+                    })}
+                    <br />
+                    <b>{t("to")}</b>{" "}
+                    {t("intlDateTime", {
+                      val: new Date(alert.expires as string),
+                      formatParams: {
+                        val: {
+                          weekday: "short",
+                          //year: "numeric",
+                          month: "long",
+                          day: "numeric",
+                          hour: "numeric",
+                          minute: "numeric",
+                          second: "numeric",
+                        },
+                      },
+                    })}
+                    <br />
+                    <em>{alert.desc}</em>
+                    <br />
+                  </>
+                ))}
+              >
+                <IconButton color="secondary" aria-label="weather alert">
+                  <WarningAmberIcon />
+                </IconButton>
+              </Tooltip>
+            </div>
+          </div>
+        )}
         {weather?.current?.temp_c && (
           <div className={classes.weatherPage__output__cards}>
             {weather?.forecast?.forecastday?.map((forecast, index: number) => (

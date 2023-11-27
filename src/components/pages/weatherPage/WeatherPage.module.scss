@@ -37,6 +37,22 @@
       justify-content: center;
     }
 
+    &__alert {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      //text-align: center;
+
+      &__text {
+        display: flex;
+        align-items: center;
+      }
+
+      &__button {
+        display: flex;
+      }
+    }
+
     &__cards {
       display: flex;
       flex-direction: row;

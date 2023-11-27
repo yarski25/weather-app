@@ -26,6 +26,12 @@ const formatsRU = {
   intlDateTime: "{{val, datetime}}",
 };
 
+const weatherAlertRU = {
+  weatherAlert: "погодное предупреждение",
+  from: "от",
+  to: "до",
+};
+
 export const translationRU = {
   title: "Приложение погоды",
   city: "город",
@@ -36,5 +42,6 @@ export const translationRU = {
   microgm3: "мкг/м³",
   ms: "м/с",
   mmHg: "мм рт.ст.",
+  ...weatherAlertRU,
   formatsRU,
 };

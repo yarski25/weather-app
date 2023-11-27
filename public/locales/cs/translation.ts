@@ -26,6 +26,12 @@ const formatsCZ = {
   intlDateTime: "{{val, datetime}}",
 };
 
+const weatherAlertCZ = {
+  weatherAlert: "výstraha počasí",
+  from: "od",
+  to: "do",
+};
+
 export const translationCZ = {
   title: "Aplikace počasí",
   city: "město",
@@ -36,5 +42,6 @@ export const translationCZ = {
   microgm3: "µg/m3",
   ms: "m/s",
   mmHg: "mmHg",
+  ...weatherAlertCZ,
   formatsCZ,
 };

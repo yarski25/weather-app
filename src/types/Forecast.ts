@@ -1,3 +1,4 @@
+import { Alerts } from "./Alerts";
 import { AirQuality, Condition, Current, WeatherData } from "./Current";
 
 type Day = {
@@ -59,4 +60,4 @@ export type Forecast = {
   forecast: ForecastBase;
 };
 
-export type Weather = Current & Forecast;
+export type Weather = Current & Forecast & Alerts;
