@@ -1,5 +1,7 @@
 name: CI/CD
-on: [push] # defaults to main
+on:
+  [push] # defaults to main
+  # workflow_dispatch: #for manual run
 permissions:
   contents: write
   pages: write
