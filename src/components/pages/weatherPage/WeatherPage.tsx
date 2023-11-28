@@ -19,11 +19,11 @@ import { useTranslation } from "react-i18next";
 import classes from "./WeatherPage.module.scss";
 import { Alerts } from "types/Alerts";
 
-const generateAlertTip = ({ alerts }: Alerts) => {
-  return alerts?.alert.map(
-    (alert, index) => `${alert?.msgtype} ${index + 1}\n ${alert?.headline}\n\n`
-  );
-};
+// const generateAlertTip = ({ alerts }: Alerts) => {
+//   return alerts?.alert.map(
+//     (alert, index) => `${alert?.msgtype} ${index + 1}\n ${alert?.headline}\n\n`
+//   );
+// };
 
 const WeatherPage = () => {
   const { t } = useTranslation();
