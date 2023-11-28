@@ -7,14 +7,14 @@ export function buildBabelLoader({ mode }: BuildOptions) {
 
   const plugins: any[] | undefined = [];
 
-  // if (isProd) {
-  //   plugins.push([
-  //     removeDataTestIdBabelPlugin,
-  //     {
-  //       props: ["data-testid"],
-  //     },
-  //   ]);
-  // }
+  if (isProd) {
+    plugins.push([
+      removeDataTestIdBabelPlugin,
+      {
+        props: ["data-testid"],
+      },
+    ]);
+  }
 
   return {
     test: /\.tsx?$/,
@@ -28,7 +28,7 @@ export function buildBabelLoader({ mode }: BuildOptions) {
           [
             "@babel/preset-react",
             {
-              runtime: isDev ? "automatic" : "classic",
+              runtime: isDev ? "automatic" : "automatic",
             },
           ],
         ],
