@@ -7,14 +7,14 @@ export function buildBabelLoader({ mode }: BuildOptions) {
 
   const plugins: any[] | undefined = [];
 
-  if (isProd) {
-    plugins.push([
-      removeDataTestIdBabelPlugin,
-      {
-        props: ["data-testid"],
-      },
-    ]);
-  }
+  // if (isProd) {
+  //   plugins.push([
+  //     removeDataTestIdBabelPlugin,
+  //     {
+  //       props: ["data-testid"],
+  //     },
+  //   ]);
+  // }
 
   return {
     test: /\.tsx?$/,
