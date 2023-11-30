@@ -24,6 +24,11 @@ const SwitchLanguageButton = () => {
         defaultValue="en"
         onChange={handleLanguage}
         disableUnderline={true}
+        // sx={{
+        //   "& .MuiMenuItem-root.Mui-selected:hover": {
+        //     backgroundColor: "yellow",
+        //   },
+        // }}
       >
         {LANGUAGES.map(({ code, label }) => (
           <MenuItem key={code} value={code}>
