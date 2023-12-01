@@ -10,7 +10,7 @@ import Container from "@mui/material/Container";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import MenuItem from "@mui/material/MenuItem";
-import logo from "../../../public/logo192.png";
+import logo from "../../../../public/logo192.png";
 import Options from "./options/Options";
 import { Link } from "react-router-dom";
 
@@ -46,8 +46,8 @@ function HeaderBar() {
 
   return (
     <AppBar position="static" color="primary">
-      <Container maxWidth="xl">
-        <Toolbar disableGutters>
+      <Container maxWidth={false} disableGutters>
+        <Toolbar sx={{ ml: 2 }} disableGutters>
           <Avatar
             alt="Weather app logo"
             src={logo}
@@ -108,7 +108,6 @@ function HeaderBar() {
                 onClick={handleCloseNavMenu}
                 sx={{
                   my: 2,
-                  // color: "text.primary",
                   display: "block",
                 }}
                 color="inherit"

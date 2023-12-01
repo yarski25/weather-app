@@ -1,5 +1,5 @@
-import SwitchLanguageButton from "../../ui/buttons/SwitchLanguageButton";
-import SwitchModeButton from "../../ui/buttons/SwitchModeButton";
+import SwitchLanguageButton from "../../../ui/buttons/SwitchLanguageButton";
+import SwitchModeButton from "../../../ui/buttons/SwitchModeButton";
 
 const Options = () => {
   return (
