@@ -32,6 +32,32 @@ const weatherAlert = {
   to: "to",
 };
 
+const cardData = {
+  temperature: "temperature",
+  wind: "wind",
+  humidity: "humidity",
+  airQuality: "air quality",
+  moonPhase: "moon phase",
+};
+
+const cardDetails = {
+  gust: "gust",
+  pressure: "pressure",
+  ultravioletRadiation: "ultraviolet radiation",
+  twoMicronsParticles: "2.5 microns particles",
+  tenMicronsParticles: "10 microns particles",
+  carbonMonoxide: "carbon monoxide",
+  ozone: "ozone",
+  nitrogenDioxide: "nitrogen dioxide",
+  sulphurDioxide: "sulphur dioxide",
+};
+
+const units = {
+  microgm3: "µg/m3",
+  ms: "m/s",
+  mmHg: "mmHg",
+};
+
 export const translationEN = {
   title: "Weather App",
   city: "city",
@@ -39,9 +65,9 @@ export const translationEN = {
   ...windDir90,
   ...windDir45,
   ...windDir225,
-  microgm3: "µg/m3",
-  ms: "m/s",
-  mmHg: "mmHg",
+  ...units,
+  ...cardData,
+  ...cardDetails,
   ...weatherAlert,
   ...formats,
 };

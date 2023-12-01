@@ -66,7 +66,6 @@ export const StyledBox = styled(Box, {
   color: theme.palette.primary.main,
   backgroundColor: theme.palette.background.paper,
   minWidth: "1dwv",
-
   marginTop: theme.spacing(2),
   marginLeft: theme.spacing(0),
   marginBottom: theme.spacing(1),
@@ -74,6 +73,7 @@ export const StyledBox = styled(Box, {
   [theme.breakpoints.up("sm")]: {
     marginLeft: theme.spacing(1),
     marginRight: theme.spacing(1),
+    maxWidth: "30dvh",
   },
   width: `calc(100%)`,
   borderRadius: "1em",
@@ -94,7 +94,6 @@ export const StyledCard = styled(Card, {
 })<StyledCardProps>(({ theme }) => ({
   color: theme.palette.primary.main,
   backgroundColor: theme.palette.primary.main,
-
   display: "flex",
   flexDirection: "column",
   justifyContent: "center",

@@ -76,7 +76,7 @@ const CardData = ({ data, day, hour }: PropsWithChildren<CardDataProps>) => {
         </Typography>
         <CardMedia
           component="img"
-          width="100"
+          height="128px"
           image={
             day > 0
               ? data?.forecast?.forecastday?.[day].day?.condition?.icon
@@ -87,13 +87,18 @@ const CardData = ({ data, day, hour }: PropsWithChildren<CardDataProps>) => {
               ? data?.forecast?.forecastday?.[day].day?.condition?.text
               : data?.current?.condition?.text
           }
+          sx={{
+            color: "text.secondary",
+            objectFit: "contain",
+            lineHeight: "128px",
+          }}
         />
       </Stack>
       <Stack spacing={0.25} direction="column" justifyContent="center">
         <Stack>
           <Item
             src={temp}
-            alt="temperature"
+            alt={t("temperature")}
             iconSize="32"
             fontSize="2em"
             justifyContentItem="center"
@@ -119,7 +124,7 @@ const CardData = ({ data, day, hour }: PropsWithChildren<CardDataProps>) => {
               ? data?.forecast?.forecastday?.[day].hour?.[hour].wind_dir
               : data?.current?.wind_dir}
           </Item> */}
-          <Item src={wind} alt="wind">
+          <Item src={wind} alt={t("wind")}>
             {day > 0
               ? (
                   ((data?.forecast?.forecastday?.[day].day
@@ -140,13 +145,13 @@ const CardData = ({ data, day, hour }: PropsWithChildren<CardDataProps>) => {
                 )
               : t(data?.current?.wind_dir as string)}
           </Item>
-          <Item src={humidity} alt="humidity">
+          <Item src={humidity} alt={t("humidity")}>
             {day > 0
               ? data?.forecast?.forecastday?.[day].day?.avghumidity
               : data?.current?.humidity}
             {""}%
           </Item>
-          <Item src={aqi} alt="air quality">
+          <Item src={aqi} alt={t("airQuality")}>
             {day > 0 &&
             data?.forecast?.forecastday?.[day].day?.air_quality?.[
               "us-epa-index"
@@ -160,7 +165,7 @@ const CardData = ({ data, day, hour }: PropsWithChildren<CardDataProps>) => {
             src={convertMoonPhase(
               data?.forecast?.forecastday?.[day].astro?.moon_phase as string
             )}
-            alt="moon phase"
+            alt={t("moonPhase")}
           >
             {day > 0 &&
             data?.forecast?.forecastday?.[day].astro?.moon_illumination

@@ -32,6 +32,32 @@ const weatherAlertCZ = {
   to: "do",
 };
 
+const cardDataCZ = {
+  temperature: "teplota",
+  wind: "vítr",
+  humidity: "vlhkost",
+  airQuality: "kvalita vzduchu",
+  moonPhase: "fáze Měsíce",
+};
+
+const cardDetailsCZ = {
+  gust: "poryv",
+  pressure: "tlak",
+  ultravioletRadiation: "ultrafialové záření",
+  twoMicronsParticles: "částice o velikosti 2,5 mikronu",
+  tenMicronsParticles: "částice o velikosti 10 mikronů",
+  carbonMonoxide: "oxid uhelnatý",
+  ozone: "ozón",
+  nitrogenDioxide: "oxid dusičitý",
+  sulphurDioxide: "oxid siřičitý",
+};
+
+const unitsCZ = {
+  microgm3: "µg/m3",
+  ms: "m/s",
+  mmHg: "mmHg",
+};
+
 export const translationCZ = {
   title: "Aplikace počasí",
   city: "město",
@@ -39,9 +65,9 @@ export const translationCZ = {
   ...windDir90CZ,
   ...windDir45CZ,
   ...windDir225CZ,
-  microgm3: "µg/m3",
-  ms: "m/s",
-  mmHg: "mmHg",
+  ...unitsCZ,
+  ...cardDataCZ,
+  ...cardDetailsCZ,
   ...weatherAlertCZ,
   formatsCZ,
 };

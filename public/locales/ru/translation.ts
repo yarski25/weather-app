@@ -32,6 +32,32 @@ const weatherAlertRU = {
   to: "до",
 };
 
+const cardDataRU = {
+  temperature: "температура",
+  wind: "ветер",
+  humidity: "влажность",
+  airQuality: "качество воздуха",
+  moonPhase: "фаза луны",
+};
+
+const cardDetailsRU = {
+  gust: "порыв",
+  pressure: "давление",
+  ultravioletRadiation: "ультрафиолетовое излучение",
+  twoMicronsParticles: "частицы размером 2,5 микрона",
+  tenMicronsParticles: "частицы размером 10 микрон",
+  carbonMonoxide: "угарный газ",
+  ozone: "озон",
+  nitrogenDioxide: "диоксид азота",
+  sulphurDioxide: "сернистый газ",
+};
+
+const unitsRU = {
+  microgm3: "мкг/м³",
+  ms: "м/с",
+  mmHg: "мм рт.ст.",
+};
+
 export const translationRU = {
   title: "Приложение погоды",
   city: "город",
@@ -39,9 +65,9 @@ export const translationRU = {
   ...windDir90RU,
   ...windDir45RU,
   ...windDir225RU,
-  microgm3: "мкг/м³",
-  ms: "м/с",
-  mmHg: "мм рт.ст.",
+  ...unitsRU,
+  ...cardDataRU,
+  ...cardDetailsRU,
   ...weatherAlertRU,
   formatsRU,
 };

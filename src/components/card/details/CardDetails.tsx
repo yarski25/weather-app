@@ -50,7 +50,7 @@ const CardDetails = ({
   return (
     <>
       <Stack padding="0.5em 1.5em">
-        <Item src={wind} alt="wind" fontSize="0.9em">
+        <Item src={wind} alt={t("gust")} fontSize="0.9em">
           {day > 0
             ? "-"
             : ((Number(data?.current?.gust_kph) * 1000) / 3600)
@@ -58,7 +58,7 @@ const CardDetails = ({
                 .toString()}{" "}
           {t("ms")} {day > 0 ? "" : t(data?.current?.wind_dir as string)}
         </Item>
-        <Item src={pressure} alt="pressure" fontSize="0.9em">
+        <Item src={pressure} alt={t("pressure")} fontSize="0.9em">
           {day > 0 &&
           data?.forecast?.forecastday?.[day].hour?.[hour].pressure_mb
             ? hPaTommHg(
@@ -72,14 +72,14 @@ const CardDetails = ({
                 .toString()}{" "}
           {t("mmHg")}
         </Item>
-        <Item src={uv} alt="ultraviolet radiation" fontSize="0.9em">
+        <Item src={uv} alt={t("ultravioletRadiation")} fontSize="0.9em">
           {day > 0 && data?.forecast?.forecastday?.[day].day?.uv
             ? data?.forecast?.forecastday?.[day].day?.uv
             : data?.current?.uv}{" "}
         </Item>
         <Item
           src={pm25}
-          alt="2.5 microns particles"
+          alt={t("twoMicronsParticles")}
           iconSize="24"
           fontSize="0.9em"
         >
@@ -94,7 +94,7 @@ const CardDetails = ({
         </Item>
         <Item
           src={pm10}
-          alt="10 microns particles"
+          alt={t("tenMicronsParticles")}
           iconSize="24"
           fontSize="0.9em"
         >
@@ -107,7 +107,7 @@ const CardDetails = ({
                 .toString()}{" "}
           {t("microgm3")}
         </Item>
-        <Item src={co} alt="carbon monoxide" iconSize="24" fontSize="0.9em">
+        <Item src={co} alt={t("carbonMonoxide")} iconSize="24" fontSize="0.9em">
           {day > 0 && data?.forecast?.forecastday?.[day].day?.air_quality?.co
             ? Number(data?.forecast?.forecastday?.[day].day?.air_quality?.co)
                 .toFixed(0)
@@ -115,7 +115,7 @@ const CardDetails = ({
             : Number(data?.current?.air_quality?.co).toFixed(0).toString()}{" "}
           {t("microgm3")}
         </Item>
-        <Item src={o3} alt="ozone" iconSize="24" fontSize="0.9em">
+        <Item src={o3} alt={t("ozone")} iconSize="24" fontSize="0.9em">
           {day > 0 && data?.forecast?.forecastday?.[day].day?.air_quality?.o3
             ? Number(data?.forecast?.forecastday?.[day].day?.air_quality?.o3)
                 .toFixed(0)
@@ -123,7 +123,12 @@ const CardDetails = ({
             : Number(data?.current?.air_quality?.o3).toFixed(0).toString()}{" "}
           {t("microgm3")}
         </Item>
-        <Item src={no2} alt="nitrogen dioxide" iconSize="24" fontSize="0.9em">
+        <Item
+          src={no2}
+          alt={t("nitrogenDioxide")}
+          iconSize="24"
+          fontSize="0.9em"
+        >
           {day > 0 && data?.forecast?.forecastday?.[day].day?.air_quality?.no2
             ? Number(data?.forecast?.forecastday?.[day].day?.air_quality?.no2)
                 .toFixed(0)
@@ -133,7 +138,12 @@ const CardDetails = ({
                 .toString()}{" "}
           {t("microgm3")}
         </Item>
-        <Item src={so2} alt="sulphur dioxide" iconSize="24" fontSize="0.9em">
+        <Item
+          src={so2}
+          alt={t("sulphurDioxide")}
+          iconSize="24"
+          fontSize="0.9em"
+        >
           {day > 0 && data?.forecast?.forecastday?.[day].day?.air_quality?.so2
             ? Number(data?.forecast?.forecastday?.[day].day?.air_quality?.so2)
                 .toFixed(0)
