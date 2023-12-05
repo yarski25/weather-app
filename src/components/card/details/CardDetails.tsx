@@ -49,7 +49,8 @@ const arrayRange = (start: number, stop: number, step: number) =>
   );
 
 const evalCAQI = (value: number, pollutant: string): string => {
-  const levels = ["very low", "low", "medium", "high", "very high"];
+  //const levels = ["very low", "low", "medium", "high", "very high"];
+  const levels = ["green", "yellow", "orange", "red", "purple"];
   const NO2 = [0, 50, 100, 200, 400];
   const PM10 = [0, 25, 50, 90, 180];
   const PM25 = [0, 15, 30, 55, 110];
@@ -125,6 +126,15 @@ const CardDetails = ({
           alt={t("twoMicronsParticles")}
           iconSize="24"
           fontSize="0.9em"
+          textColor={evalCAQI(
+            day > 0 &&
+              Number(data?.forecast?.forecastday?.[day].day?.air_quality?.pm2_5)
+              ? Number(
+                  data?.forecast?.forecastday?.[day].day?.air_quality?.pm2_5
+                )
+              : Number(data?.current?.air_quality?.pm2_5),
+            "PM25"
+          )}
         >
           {day > 0 && data?.forecast?.forecastday?.[day].day?.air_quality?.pm2_5
             ? Number(data?.forecast?.forecastday?.[day].day?.air_quality?.pm2_5)
@@ -140,6 +150,15 @@ const CardDetails = ({
           alt={t("tenMicronsParticles")}
           iconSize="24"
           fontSize="0.9em"
+          textColor={evalCAQI(
+            day > 0 &&
+              Number(data?.forecast?.forecastday?.[day].day?.air_quality?.pm10)
+              ? Number(
+                  data?.forecast?.forecastday?.[day].day?.air_quality?.pm10
+                )
+              : Number(data?.current?.air_quality?.pm10),
+            "PM10"
+          )}
         >
           {day > 0 && data?.forecast?.forecastday?.[day].day?.air_quality?.pm10
             ? Number(data?.forecast?.forecastday?.[day].day?.air_quality?.pm10)
@@ -158,7 +177,19 @@ const CardDetails = ({
             : Number(data?.current?.air_quality?.co).toFixed(0).toString()}{" "}
           {t("microgm3")}
         </Item>
-        <Item src={o3} alt={t("ozone")} iconSize="24" fontSize="0.9em">
+        <Item
+          src={o3}
+          alt={t("ozone")}
+          iconSize="24"
+          fontSize="0.9em"
+          textColor={evalCAQI(
+            day > 0 &&
+              Number(data?.forecast?.forecastday?.[day].day?.air_quality?.o3)
+              ? Number(data?.forecast?.forecastday?.[day].day?.air_quality?.o3)
+              : Number(data?.current?.air_quality?.o3),
+            "O3"
+          )}
+        >
           {day > 0 && data?.forecast?.forecastday?.[day].day?.air_quality?.o3
             ? Number(data?.forecast?.forecastday?.[day].day?.air_quality?.o3)
                 .toFixed(0)
@@ -171,6 +202,13 @@ const CardDetails = ({
           alt={t("nitrogenDioxide")}
           iconSize="24"
           fontSize="0.9em"
+          textColor={evalCAQI(
+            day > 0 &&
+              Number(data?.forecast?.forecastday?.[day].day?.air_quality?.no2)
+              ? Number(data?.forecast?.forecastday?.[day].day?.air_quality?.no2)
+              : Number(data?.current?.air_quality?.no2),
+            "NO2"
+          )}
         >
           {day > 0 && data?.forecast?.forecastday?.[day].day?.air_quality?.no2
             ? Number(data?.forecast?.forecastday?.[day].day?.air_quality?.no2)
