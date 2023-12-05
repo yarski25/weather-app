@@ -51,6 +51,25 @@ const convertMoonPhase = (moonPhase: string) => {
   }
 };
 
+const evalAQI = (index: number): string => {
+  switch (index) {
+    case 1:
+      return "green";
+    case 2:
+      return "yellow";
+    case 3:
+      return "orange";
+    case 4:
+      return "red";
+    case 5:
+      return "purple";
+    case 6:
+      return "maroon";
+    default:
+      throw new Error("incorrect US EPA AQIindex");
+  }
+};
+
 const CardData = ({ data, day, hour }: PropsWithChildren<CardDataProps>) => {
   const { t } = useTranslation();
 
@@ -151,7 +170,24 @@ const CardData = ({ data, day, hour }: PropsWithChildren<CardDataProps>) => {
               : data?.current?.humidity}
             {""}%
           </Item>
-          <Item src={aqi} alt={t("airQuality")}>
+          <Item
+            src={aqi}
+            alt={t("airQuality")}
+            textColor={evalAQI(
+              day > 0 &&
+                Number(
+                  data?.forecast?.forecastday?.[day].day?.air_quality?.[
+                    "us-epa-index"
+                  ]
+                )
+                ? Number(
+                    data?.forecast?.forecastday?.[day].day?.air_quality?.[
+                      "us-epa-index"
+                    ]
+                  )
+                : Number(data?.current?.air_quality?.["us-epa-index"])
+            )}
+          >
             {day > 0 &&
             data?.forecast?.forecastday?.[day].day?.air_quality?.[
               "us-epa-index"

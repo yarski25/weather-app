@@ -40,6 +40,49 @@ const evaluatePM25 = (value: number) => {
   else if (value > level3) return "bad";
 };
 
+// CAQI - EU common AQI
+
+const arrayRange = (start: number, stop: number, step: number) =>
+  Array.from(
+    { length: (stop - start) / step + 1 },
+    (value, index) => start + index * step
+  );
+
+const evalCAQI = (value: number, pollutant: string): string => {
+  const levels = ["very low", "low", "medium", "high", "very high"];
+  const NO2 = [0, 50, 100, 200, 400];
+  const PM10 = [0, 25, 50, 90, 180];
+  const PM25 = [0, 15, 30, 55, 110];
+  const O3 = arrayRange(0, 240, 60);
+
+  const getLevel = (array: Array<number>): number => {
+    let i;
+    for (i = 1; array.length - 1; i++) {
+      if (array[i] > value) {
+        break;
+      }
+    }
+    return i - 1;
+  };
+
+  switch (pollutant) {
+    case "NO2": {
+      return levels[getLevel(NO2)];
+    }
+    case "PM10": {
+      return levels[getLevel(PM10)];
+    }
+    case "O3": {
+      return levels[getLevel(O3)];
+    }
+    case "PM25": {
+      return levels[getLevel(PM25)];
+    }
+    default:
+      throw new Error("Incorret pollutant name");
+  }
+};
+
 const CardDetails = ({
   data,
   day,

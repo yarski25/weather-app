@@ -6,6 +6,7 @@ type ItemProps = {
   alt?: string; // icon alt text
   iconSize?: string; // icon size
   fontSize?: string; // font size
+  textColor?: string; // text color
   style?: React.CSSProperties;
   justifyContentItem?: string; // justify content Item
   paddingItem?: string; // padding Item
@@ -54,7 +55,7 @@ const Item = (props: PropsWithChildren<ItemProps>) => {
               overflow: "hidden",
               textOverflow: "ellipsis",
             }}
-            color="text.secondary"
+            color={props.textColor || "text.secondary"}
           >
             {props.children}
           </Typography>
