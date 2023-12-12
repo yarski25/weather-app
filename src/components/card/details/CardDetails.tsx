@@ -7,6 +7,9 @@ import o3 from "../../../assets/O3.webp";
 import no2 from "../../../assets/NO2.webp";
 import so2 from "../../../assets/SO2.webp";
 import pressure from "../../../assets/pressure.webp";
+import rain from "../../../assets/rain.webp";
+import snow from "../../../assets/snow.webp";
+import visibility from "../../../assets/visibility.webp";
 import uv from "../../../assets/uv.webp";
 import Item from "../../ui/Item/Item";
 import { Weather } from "../../../types/Forecast";
@@ -50,7 +53,7 @@ const arrayRange = (start: number, stop: number, step: number) =>
 
 const evalCAQI = (value: number, pollutant: string): string => {
   //const levels = ["very low", "low", "medium", "high", "very high"];
-  const levels = ["green", "yellow", "orange", "red", "purple"];
+  const levels = ["green", "yellow", "orange", "red", "maroon"];
   const NO2 = [0, 50, 100, 200, 400];
   const PM10 = [0, 25, 50, 90, 180];
   const PM25 = [0, 15, 30, 55, 110];
@@ -59,7 +62,7 @@ const evalCAQI = (value: number, pollutant: string): string => {
   const getLevel = (array: Array<number>): number => {
     let i;
     for (i = 1; array.length - 1; i++) {
-      if (array[i] > value) {
+      if (array[i] >= value) {
         break;
       }
     }
@@ -94,14 +97,6 @@ const CardDetails = ({
   return (
     <>
       <Stack padding="0.5em 1.5em">
-        <Item src={wind} alt={t("gust")} fontSize="0.9em">
-          {day > 0
-            ? "-"
-            : ((Number(data?.current?.gust_kph) * 1000) / 3600)
-                .toFixed(0)
-                .toString()}{" "}
-          {t("ms")} {day > 0 ? "" : t(data?.current?.wind_dir as string)}
-        </Item>
         <Item src={pressure} alt={t("pressure")} fontSize="0.9em">
           {day > 0 &&
           data?.forecast?.forecastday?.[day].hour?.[hour].pressure_mb
@@ -115,6 +110,44 @@ const CardDetails = ({
                 .toFixed(0)
                 .toString()}{" "}
           {t("mmHg")}
+        </Item>
+        <Item src={rain} alt={t("totalPrecipitation")} fontSize="0.9em">
+          {day > 0 &&
+          Number(data?.forecast?.forecastday?.[day].day?.totalprecip_mm)
+            ? Number(data?.forecast?.forecastday?.[day].day?.totalprecip_mm)
+                .toFixed(0)
+                .toString()
+            : Number(data?.forecast?.forecastday?.[day].day?.totalprecip_mm)
+                .toFixed(0)
+                .toString()}{" "}
+          {t("mm")}
+        </Item>
+        <Item src={snow} alt={t("totalSnow")} fontSize="0.9em">
+          {day > 0 &&
+          Number(data?.forecast?.forecastday?.[day].day?.totalsnow_cm)
+            ? Number(data?.forecast?.forecastday?.[day].day?.totalsnow_cm)
+                .toFixed(0)
+                .toString()
+            : Number(data?.forecast?.forecastday?.[day].day?.totalsnow_cm)
+                .toFixed(0)
+                .toString()}{" "}
+          {t("cm")}
+        </Item>
+        <Item src={wind} alt={t("gust")} fontSize="0.9em">
+          {day > 0
+            ? "-"
+            : ((Number(data?.current?.gust_kph) * 1000) / 3600)
+                .toFixed(0)
+                .toString()}{" "}
+          {t("ms")} {day > 0 ? "" : t(data?.current?.wind_dir as string)}
+        </Item>
+        <Item src={visibility} alt={t("visibility")} fontSize="0.9em">
+          {day > 0 && Number(data?.forecast?.forecastday?.[day].day?.avgvis_km)
+            ? Number(data?.forecast?.forecastday?.[day].day?.avgvis_km)
+                .toFixed(1)
+                .toString()
+            : Number(data?.current?.vis_km).toFixed(1).toString()}{" "}
+          {t("km")}
         </Item>
         <Item src={uv} alt={t("ultravioletRadiation")} fontSize="0.9em">
           {day > 0 && data?.forecast?.forecastday?.[day].day?.uv

@@ -50,12 +50,18 @@ const cardDetails = {
   ozone: "ozone",
   nitrogenDioxide: "nitrogen dioxide",
   sulphurDioxide: "sulphur dioxide",
+  totalPrecipitation: "total precipitation",
+  totalSnow: "total snow",
+  visibility: "visibility",
 };
 
 const units = {
   microgm3: "µg/m3",
   ms: "m/s",
   mmHg: "mmHg",
+  mm: "mm",
+  cm: "cm",
+  km: "km",
 };
 
 export const translationEN = {

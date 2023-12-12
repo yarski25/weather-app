@@ -50,12 +50,18 @@ const cardDetailsCZ = {
   ozone: "ozón",
   nitrogenDioxide: "oxid dusičitý",
   sulphurDioxide: "oxid siřičitý",
+  totalPrecipitation: "celkově srážek",
+  totalSnow: "celkově sníhu",
+  visibility: "viditelnost",
 };
 
 const unitsCZ = {
   microgm3: "µg/m3",
   ms: "m/s",
   mmHg: "mmHg",
+  mm: "mm",
+  cm: "cm",
+  km: "km",
 };
 
 export const translationCZ = {

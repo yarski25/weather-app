@@ -50,12 +50,18 @@ const cardDetailsRU = {
   ozone: "озон",
   nitrogenDioxide: "диоксид азота",
   sulphurDioxide: "сернистый газ",
+  totalPrecipitation: "общее количество осадков",
+  totalSnow: "общее количество снега",
+  visibility: "видимость",
 };
 
 const unitsRU = {
   microgm3: "мкг/м³",
   ms: "м/с",
   mmHg: "мм рт.ст.",
+  mm: "мм",
+  cm: "см",
+  km: "км",
 };
 
 export const translationRU = {
