@@ -11,7 +11,6 @@ import { ColorContext } from "./types/ColorContext";
 import Footer from "./components/footer/Footer";
 import Header from "./components/header/Header";
 import Main from "./components/main/Main";
-import "./aws-exports";
 
 function App() {
   const [mode, setMode] = useState<PaletteMode>("light");
